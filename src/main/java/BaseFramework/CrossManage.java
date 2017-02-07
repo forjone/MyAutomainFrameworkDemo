@@ -11,7 +11,7 @@ public class CrossManage  {
     public void test(WebDriver driverChrome)   {
 
 
-         driverChrome = BroswerInit.getInstans();
+         driverChrome = BroswerInit.getDriverBroswer();
 
 //        driverChrome.get("http://www.baidu.com");
 

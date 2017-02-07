@@ -9,47 +9,46 @@ import org.testng.annotations.BeforeTest;
  * Created by thinkpad on 2017/1/11.
  */
 public class BroswerInit {
+    public static WebDriver driverBroswer;
     static {
         //指定Firefox 安装路径
         System.setProperty("webdriver.firefox.bin","D:\\Software\\FireFox\\firefox.exe");    //setProperty相当于设置为静态变量，存在于内存里面
         //指定Chrome 安装路径
         System.setProperty("webdriver.chrome.driver",".\\drivers\\chromedriver.exe");
+        driverBroswer = new ChromeDriver();
+        System.out.println("打开Chrome浏览器成功");
     }
 
-
-
-//    public WebDriver driver;
-    private static WebDriver driverChrome = new  ChromeDriver();
-
-    @BeforeTest
-
-    public static  WebDriver getInstans(){
-
-/*
-        //启动Firefox浏览器
-        driver = new FirefoxDriver();
-        System.out.println("打开firefox浏览器成功");
-        */
-
-//        driverChrome = new  ChromeDriver();
-
-//        driverChrome.manage().window().maximize();
-//        System.out.println ("打开chrome浏览器成功");
-
-        return driverChrome ;
-
-
+    public static  WebDriver getDriverBroswer(){
+        return driverBroswer ;
     }
 
-
-
-
-    @AfterTest
     public static void  close() throws InterruptedException {
         Thread.sleep(4000);
 //        driver.quit();
 //        System.out.println("关闭firefox浏览器成功");
-        driverChrome.quit();
+        driverBroswer.quit();
         System.out.println("关闭Chrome浏览器成功");
     }
+
+/*
+//    伟东代码
+
+
+    public static WebDriver driverBrower;
+
+    static {
+        System.setProperty("webdriver.chrome.driver", ".\\drivers\\chromedriver.exe");
+        driverBrower = new ChromeDriver();
+    }
+
+    public static WebDriver getBrower() {
+//        if (driverBrower == null) {
+//            driverBrower = new ChromeDriver();
+//        }
+        return  driverBrower;
+    }
+
+    */
+
 }
