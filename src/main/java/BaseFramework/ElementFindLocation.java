@@ -9,22 +9,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 /**
  * Created by thinkpad on 2017/1/11.
  */
-public class ElementFindLocation  {
-/*
-    WebDriver driverChrome;
+public class ElementFindLocation {
 
-    public  WebDriver BroswerInit1() {
-
-        //指定Chrome 安装路径
-        System.setProperty("webdriver.chrome.driver", ".\\drivers\\chromedriver.exe");
-        //启动Firefox浏览器
-        driverChrome = new ChromeDriver();
-        System.out.println("打开firefox浏览器成功");
-        return driverChrome;
-    }
-*/
-
-    public  WebElement locationElement(/*WebDriver driverChrome,*/String locationType, String locationValue) {
+    public WebElement locationElement(/*WebDriver driverChrome,*/String locationType, String locationValue) {
         WebElement element = null;   //定义并初始化元素对象
         WebDriver driverChrome = BroswerInit.getDriverBroswer();
 
@@ -33,40 +20,30 @@ public class ElementFindLocation  {
         优点：通过配置条件，可以实现不区分大小写，甚至模糊匹配
         缺点：代码太长，可读性差
      */
+
         int lType = 0;
         if (locationType == "id") {
-            lType = 1;
+            element = driverChrome.findElement(By.id(locationValue));
+        } else if (locationType == "name") {
+            element = driverChrome.findElement(By.name(locationValue));
+        } else if (locationType == "className") {
+            element = driverChrome.findElement(By.className(locationValue));
+        } else if (locationType == "linkText") {
+            element = driverChrome.findElement(By.linkText(locationValue));
+        } else if (locationType == "partialLinkText") {
+            element = driverChrome.findElement(By.partialLinkText(locationValue));
+        } else if (locationType == "cssSelector") {
+            element = driverChrome.findElement(By.cssSelector(locationValue));
+        } else if (locationType == "tagName") {
+            element = driverChrome.findElement(By.tagName(locationValue));
+        } else if (locationType == "xpath") {
+            element = driverChrome.findElement(By.xpath(locationValue));
         } else {
-            if (locationType == "name") {
-                lType = 2;
-            } else {
-                if (locationType == "className") {
-                    lType = 3;
-                } else {
-                    if (locationType == "linkText") {
-                        lType = 4;
-                    } else {
-                        if (locationType == "partialLinkText") {
-                            lType = 5;
-                        } else {
-                            if (locationType == "cssSelector") {
-                                lType = 6;
-                            } else {
-                                if (locationType == "tagName") {
-                                    lType = 7;
-                                } else {
-                                    if (locationType == "xpath") {
-                                        lType = 8;
-                                    } else {
-                                        System.out.println("无法选择已有方法定位元素");
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            System.out.println("无法选择已有方法定位元素");
         }
+
+        return element;
+
         /*
         * 定位方法对应关系
         * id===============1
@@ -79,7 +56,7 @@ public class ElementFindLocation  {
          xPath============8
         *
         * */
-        switch (lType) {
+/*        switch (lType) {
             case 1:
                 element = driverChrome.findElement(By.id(locationValue));
                 break;
@@ -104,10 +81,9 @@ public class ElementFindLocation  {
             case 8:
                 element = driverChrome.findElement(By.xpath(locationValue));
                 break;
-        }
+        }*/
 
 
-    return element;
 
 /*
 * 元素定位方法2
@@ -119,9 +95,6 @@ public class ElementFindLocation  {
 *
 * */
 //    element = driverChrome.findElement(By+"."+locationType(locationValue));
-
-
-
 
 
     }
