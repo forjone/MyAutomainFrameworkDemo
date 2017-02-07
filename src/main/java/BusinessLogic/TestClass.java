@@ -2,6 +2,7 @@ package BusinessLogic;
 
 import BaseFramework.BroswerInit;
 import BaseFramework.ElementFindLocation;
+import BaseFramework.ElementOption;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -47,13 +48,15 @@ public class TestClass {
     }
 
     @Test
-    public void functionTest1() {
+    public void functionTest1() throws InterruptedException {
+        driverChrome.get("https://www.baidu.com/");
         ElementFindLocation elementFindLocation = new ElementFindLocation();
-        WebElement webElement3 = elementFindLocation.locationElement(/*driverChrome,*/"linkText", "贴吧");
-        webElement3.click();
-        String title = driverChrome.getTitle();
-        System.out.println("标题是：" + title);
-        Assert.assertEquals(title, "selenium吧_百度贴吧");
+        ElementOption elementOption = new ElementOption();
+        WebElement inputBox = elementFindLocation.locationElement("id", "kw");
+        elementOption.elementOption(inputBox,"sendKeys","子君");
+        WebElement baiduButton = elementFindLocation.locationElement("xpath", ".//*[@id='su']");
+        elementOption.elementOption(baiduButton,"click",null);
+        Thread.sleep(5000);
     }
 
 
