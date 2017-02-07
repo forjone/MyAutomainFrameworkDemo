@@ -20,23 +20,22 @@ public class ElementFindLocation {
         优点：通过配置条件，可以实现不区分大小写，甚至模糊匹配
         缺点：代码太长，可读性差
      */
-
         int lType = 0;
-        if (locationType == "id") {
+        if (locationType.equals("id")) {
             element = driverChrome.findElement(By.id(locationValue));
-        } else if (locationType == "name") {
+        } else if (locationType.equals("name")) {
             element = driverChrome.findElement(By.name(locationValue));
-        } else if (locationType == "className") {
+        } else if (locationType.equals("className")) {
             element = driverChrome.findElement(By.className(locationValue));
-        } else if (locationType == "linkText") {
+        } else if (locationType.equals("linkText")) {
             element = driverChrome.findElement(By.linkText(locationValue));
-        } else if (locationType == "partialLinkText") {
+        } else if (locationType.equals("partialLinkText")) {
             element = driverChrome.findElement(By.partialLinkText(locationValue));
-        } else if (locationType == "cssSelector") {
+        } else if (locationType.equals("cssSelector")) {
             element = driverChrome.findElement(By.cssSelector(locationValue));
-        } else if (locationType == "tagName") {
+        } else if (locationType.equals("tagName")) {
             element = driverChrome.findElement(By.tagName(locationValue));
-        } else if (locationType == "xpath") {
+        } else if (locationType.equals("xpath")) {
             element = driverChrome.findElement(By.xpath(locationValue));
         } else {
             System.out.println("无法选择已有方法定位元素");
