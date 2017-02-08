@@ -11,9 +11,16 @@ import org.openqa.selenium.support.ui.Select;
  */
 public class ElementOption {
     WebDriver driverChrome = BroswerInit.getDriverBroswer();
-    WebElement element = null;
+//    WebElement element = null;
 
-    public  void elementOption(WebElement element,/*String expectedType,*/ String option, String optionValue) {
+    public  void elementOption(String locationType, String locationValue, String option, String optionValue/*,String expectedType*/) {
+        ElementFindLocation elementFindLocation = new ElementFindLocation();
+        WebElement element = elementFindLocation.locationElement(locationType, locationValue);
+
+
+
+
+
        /* //用来校验运行中的对象是否和对象库中的对象类型一致
         String actualType = element.getAttribute("type");
         if (actualType.equals(expectedType))
@@ -27,7 +34,7 @@ public class ElementOption {
                   contextClick：右击
 
        */
-            if(option.equals("click")){
+        if(option.equals("click")){
 //            如果操作是“点击”的话，元素执行点击操作
                 element.click();
             }else if (option.equals("sendKeys")){
@@ -50,12 +57,6 @@ public class ElementOption {
                 System.out.println("此操作对象不支持，请确认操作方式是否正确，或完善代码");
 
             }
-
-
-
-
-
-
     }
 
 }

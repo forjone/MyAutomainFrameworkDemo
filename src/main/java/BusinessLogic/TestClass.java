@@ -1,6 +1,7 @@
 package BusinessLogic;
 
 import BaseFramework.BroswerInit;
+import BaseFramework.CrossManage;
 import BaseFramework.ElementFindLocation;
 import BaseFramework.ElementOption;
 import org.openqa.selenium.WebDriver;
@@ -50,18 +51,31 @@ public class TestClass {
     @Test
     public void functionTest1() throws InterruptedException {
         driverChrome.get("https://www.baidu.com/");
-        ElementFindLocation elementFindLocation = new ElementFindLocation();
         ElementOption elementOption = new ElementOption();
-        WebElement inputBox = elementFindLocation.locationElement("id", "kw");
-        elementOption.elementOption(inputBox,"sendKeys","子君");
-        WebElement baiduButton = elementFindLocation.locationElement("xpath", ".//*[@id='su']");
-        elementOption.elementOption(baiduButton,"click",null);
+        elementOption.elementOption("id","kw","inputBox","子君");
+        elementOption.elementOption("xpath",".//*[@id='su']","click",null);
         Thread.sleep(5000);
+    }
+    @Test
+    public void Test3() throws InterruptedException {
+        driverChrome.get("file:///E:/selenium_test/selenium_html/index.html");
+        ElementOption elementOption = new ElementOption();
+        CrossManage crossManage = new CrossManage();
+        elementOption.elementOption("xpath",".//*[@id='user']","sendKeys","跨域");
+        elementOption.elementOption("xpath",".//*[@id='alert']/input","click",null);
+        crossManage.crossOption("alert",null,null);
+//        elementOption.elementOption("xpath",".//*[@id='confirm']/input","click",null);
+//        crossManage.crossOption("confirm","save",null);
+        elementOption.elementOption("xpath",".//*[@id='open']/a","click",null);
+        crossManage.crossOption("window",null,null);
+        elementOption.elementOption("xpath",".//*[@id='link']/a","click",null);
+        BroswerInit.closePage();
+
     }
 
 
     @AfterTest
     public void close() throws InterruptedException {
-        BroswerInit.close();
+        BroswerInit.closeBroswer();
     }
 }

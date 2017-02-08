@@ -23,13 +23,20 @@ public class BroswerInit {
         return driverBroswer ;
     }
 
-    public static void  close() throws InterruptedException {
+    public static void  closeBroswer() throws InterruptedException {
         Thread.sleep(4000);
 //        driver.quit();
 //        System.out.println("关闭firefox浏览器成功");
         driverBroswer.quit();
         System.out.println("关闭Chrome浏览器成功");
     }
+    //    关闭页签
+    public static void closePage() throws InterruptedException {
+        Thread.sleep(2000);
+        driverBroswer.close();
+        System.out.println("关闭Chrome浏览器页签成功");
+    }
+
 
 /*
 //    伟东代码
