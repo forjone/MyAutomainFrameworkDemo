@@ -1,13 +1,26 @@
 package BaseFramework;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
-/**
- * Created by thinkpad on 2017/1/11.
- * 本文件功能是为了元素定位而设计，涵盖了所有的定位方法和无法定位的定位方法
- * 如果遇到没有办法定位的，做异常处理，抛错
- */
+
 public class ExpectManage {
-    public WebDriver driverChrome;
+    WebDriver driverChrome = BroswerInit.getDriverBroswer();
+    ElementFindLocation elementFindLocation = new ElementFindLocation();
+    public void expectManage(String checkElementType, String expectResult,String locationType, String locationValue) {
+        if (checkElementType.equals("title")) {
+            String actualTitle = driverChrome.getTitle();
+            System.out.println("实际标题为：" + actualTitle);
+            Assert.assertEquals(actualTitle, expectResult);
 
+        }else if(checkElementType.equals("inputBox")){
+            WebElement checkElement = elementFindLocation.locationElement(locationType, locationValue);
+            String actualText = checkElement.getText();
+            System.out.println("实际校验结果为：" + actualText);
+            Assert.assertEquals(actualText, expectResult);
+        }
+
+
+    }
 }
