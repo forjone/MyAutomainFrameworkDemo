@@ -10,26 +10,28 @@ import org.testng.annotations.BeforeTest;
  */
 public class BroswerInit {
     public static WebDriver driverBroswer;
+
     static {
         //指定Firefox 安装路径
-        System.setProperty("webdriver.firefox.bin","D:\\Software\\FireFox\\firefox.exe");    //setProperty相当于设置为静态变量，存在于内存里面
+        System.setProperty("webdriver.firefox.bin", "D:\\Software\\FireFox\\firefox.exe");    //setProperty相当于设置为静态变量，存在于内存里面
         //指定Chrome 安装路径
-        System.setProperty("webdriver.chrome.driver",".\\drivers\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", ".\\drivers\\chromedriver.exe");
         driverBroswer = new ChromeDriver();
         System.out.println("打开Chrome浏览器成功");
     }
 
-    public static  WebDriver getDriverBroswer(){
-        return driverBroswer ;
+    public static WebDriver getDriverBroswer() {
+        return driverBroswer;
     }
 
-    public static void  closeBroswer() throws InterruptedException {
+    public static void closeBroswer() throws InterruptedException {
         Thread.sleep(4000);
 //        driver.quit();
 //        System.out.println("关闭firefox浏览器成功");
         driverBroswer.quit();
         System.out.println("关闭Chrome浏览器成功");
     }
+
     //    关闭页签
     public static void closePage() throws InterruptedException {
         Thread.sleep(2000);
