@@ -3,14 +3,10 @@ package BusinessLogic;
 import BaseFramework.BroswerInit;
 import BaseFramework.CrossManage;
 import BaseFramework.ElementFindLocation;
-import BaseFramework.ElementOption;
+import BaseFramework.ElementOperation;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
@@ -51,24 +47,24 @@ public class TestClass {
     @Test
     public void functionTest1() throws InterruptedException {
         driverChrome.get("https://www.baidu.com/");
-        ElementOption elementOption = new ElementOption();
-        elementOption.elementOption("id","kw","inputBox","子君");
-        elementOption.elementOption("xpath",".//*[@id='su']","click",null);
+        ElementOperation elementOperation = new ElementOperation();
+        elementOperation.elementOperation("id","kw","click","子君");
+        elementOperation.elementOperation("xpath",".//*[@id='su']","click",null);
         Thread.sleep(5000);
     }
     @Test
     public void Test3() throws InterruptedException {
-        driverChrome.get("file:///E:/selenium_test/selenium_html/index.html");
-        ElementOption elementOption = new ElementOption();
+        driverChrome.get("file:///C:/users/xuanyu/documents/%E4%BA%91%E5%B1%82%E5%9F%B9%E8%AE%AD/webdriver/selenium_html/index.html");
+        ElementOperation elementOperation = new ElementOperation();
         CrossManage crossManage = new CrossManage();
-        elementOption.elementOption("xpath",".//*[@id='user']","sendKeys","跨域");
-        elementOption.elementOption("xpath",".//*[@id='alert']/input","click",null);
-        crossManage.crossOption("alert",null,null);
-//        elementOption.elementOption("xpath",".//*[@id='confirm']/input","click",null);
-//        crossManage.crossOption("confirm","save",null);
-        elementOption.elementOption("xpath",".//*[@id='open']/a","click",null);
-        crossManage.crossOption("window",null,null);
-        elementOption.elementOption("xpath",".//*[@id='link']/a","click",null);
+        elementOperation.elementOperation("xpath",".//*[@id='user']","sendKeys","跨域");
+        elementOperation.elementOperation("xpath",".//*[@id='alert']/input","click",null);
+        crossManage.crossOperation("alert",null,null);
+//        elementOperation.elementOperation("xpath",".//*[@id='confirm']/input","click",null);
+//        crossManage.crossoperation("confirm","save",null);
+        elementOperation.elementOperation("xpath",".//*[@id='open']/a","click",null);
+        crossManage.crossOperation("window",null,null);
+        elementOperation.elementOperation("xpath",".//*[@id='link']/a","click",null);
         BroswerInit.closePage();
 
     }

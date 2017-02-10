@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
 public class CrossManage {
     WebDriver driverChrome = BroswerInit.getDriverBroswer();
 
-    public void crossOption(String crossType, String crossValue, String iframeElementLocationType) throws InterruptedException {
+    public void crossOperation(String crossType, String crossValue, String iframeElementLocationType) throws InterruptedException {
 //        1.弹框：Alert
 //        2.确认窗：comfirm
 //        3.iframe

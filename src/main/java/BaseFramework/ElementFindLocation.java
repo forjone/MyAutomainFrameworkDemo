@@ -1,6 +1,7 @@
 package BaseFramework;
 
 import BusinessLogic.BrowerClass;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -22,7 +23,7 @@ public class ElementFindLocation {
         优点：通过配置条件，可以实现不区分大小写，甚至模糊匹配
         缺点：代码太长，可读性差
      */
-        int lType = 0;
+        boolean tureLocation = true;
         if (locationType.equals("id")) {
             element = driverChrome.findElement(By.id(locationValue));
         } else if (locationType.equals("name")) {
@@ -41,7 +42,9 @@ public class ElementFindLocation {
             element = driverChrome.findElement(By.xpath(locationValue));
         } else {
             System.out.println("无法选择已有方法定位元素");
+            tureLocation = false;
         }
+        Assert.assertTrue("传入的" + locationType + "方法无法定位元素", tureLocation);
 
         return element;
 
