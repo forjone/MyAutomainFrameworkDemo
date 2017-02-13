@@ -13,28 +13,28 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.io.*;
-
-
 /**
  * Created by thinkpad on 2017/2/7.
  */
 public class TestClass {
-    WebDriver driverChrome;
+    WebDriver driverChrome = BroswerInit.getDriverBroswer();
 
-    @BeforeMethod
-    public void Brosweropen() throws FileNotFoundException {
+//    static WebDriver driverChrome;
+//    static {
+//        //driverChrome = new ChromeDriver();
+//    }
 /*
 
-//        讲控制台输出信息导出到文件
-        FileOutputStream bos = new FileOutputStream("output.txt");
-        System.setOut(new PrintStream(bos));
-        System.out.println("output to output.txt");
-*/
+    @BeforeMethod
+    public void BroswerInit1() {
 
-        driverChrome = BroswerInit.getDriverBroswer();
+        //指定Chrome 安装路径
+        System.setProperty("webdriver.chrome.driver", ".\\drivers\\chromedriver.exe");
+        //启动Firefox浏览器
+        driverChrome = new ChromeDriver();
+        System.out.println("打开firefox浏览器成功");
     }
-
+*/
 
     @Test
     public void functionTest() {
@@ -52,26 +52,24 @@ public class TestClass {
     public void functionTest1() throws InterruptedException {
         driverChrome.get("https://www.baidu.com/");
         ElementOption elementOption = new ElementOption();
-        elementOption.elementOption("id", "kw", "inputBox", "dreaming");
-        elementOption.elementOption("xpath", ".//*[@id='su']", "click", null);
+        elementOption.elementOption("id","kw","inputBox","子君");
+        elementOption.elementOption("xpath",".//*[@id='su']","click",null);
         Thread.sleep(5000);
     }
-
     @Test
-    public void Test3() throws InterruptedException, FileNotFoundException {
+    public void Test3() throws InterruptedException {
         driverChrome.get("file:///E:/selenium_test/selenium_html/index.html");
         ElementOption elementOption = new ElementOption();
         CrossManage crossManage = new CrossManage();
-        elementOption.elementOption("xpath", ".//*[@id='user']", "sendKeys", "跨域");
-        elementOption.elementOption("xpath", ".//*[@id='alert']/input", "click", null);
-        crossManage.crossOption("alert", null, null);
+        elementOption.elementOption("xpath",".//*[@id='user']","sendKeys","跨域");
+        elementOption.elementOption("xpath",".//*[@id='alert']/input","click",null);
+        crossManage.crossOption("alert",null,null);
 //        elementOption.elementOption("xpath",".//*[@id='confirm']/input","click",null);
 //        crossManage.crossOption("confirm","save",null);
-        elementOption.elementOption("xpath", ".//*[@id='open']/a", "click", null);
-        crossManage.crossOption("window", null, null);
-        elementOption.elementOption("xpath", ".//*[@id='link']/a", "click", null);
+        elementOption.elementOption("xpath",".//*[@id='open']/a","click",null);
+        crossManage.crossOption("window",null,null);
+        elementOption.elementOption("xpath",".//*[@id='link']/a","click",null);
         BroswerInit.closePage();
-
 
     }
 
