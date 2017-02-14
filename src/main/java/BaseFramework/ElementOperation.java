@@ -10,11 +10,11 @@ import org.openqa.selenium.support.ui.Select;
 /**
  * Created by thinkpad on 2017/1/11.
  */
-public class ElementOperation {
-    WebDriver driverChrome = BroswerInit.getDriverBroswer();
+public  class ElementOperation {
+    static WebDriver driverChrome = BroswerInit.getDriverBroswer();
 //    WebElement element = null;
 
-    public void elementOperation(String locationType, String locationValue, String operation, String operationValue/*,String expectedType*/) {
+    public static void elementOperation(String locationType, String locationValue, String operation, String operationValue/*,String expectedType*/) {
         ElementFindLocation elementFindLocation = new ElementFindLocation();
         WebElement element = elementFindLocation.locationElement(locationType, locationValue);
 
@@ -46,7 +46,7 @@ public class ElementOperation {
         } else if (operation.equals("select")) {
             Select select = new Select(element);
             //        使用属性值选择下拉框
-            select.selectByValue(operationValue);
+            select.selectByValue(operationValue);//根据属性值
         } else if (operation.equals("doubleClick")) {
 //            如果操作是“双击”，元素执行赋值操作
             Actions actions = new Actions(driverChrome);
