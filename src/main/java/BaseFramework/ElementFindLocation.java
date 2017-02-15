@@ -1,8 +1,10 @@
 package BaseFramework;
 
 import BusinessLogic.BrowerClass;
+import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -13,8 +15,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
  * 如果遇到没有办法定位的，做异常处理，抛错
  */
 public class ElementFindLocation {
+    //初始化log4j的logger,做初始化功能
+    private static Logger logger = Logger.getLogger(ElementFindLocation.class);
 
     public WebElement locationElement(/*WebDriver driverChrome,*/String locationType, String locationValue) {
+
         WebElement element = null;   //定义并初始化元素对象
         WebDriver driverChrome = BroswerInit.getDriverBroswer();
 
@@ -23,28 +28,41 @@ public class ElementFindLocation {
         优点：通过配置条件，可以实现不区分大小写，甚至模糊匹配
         缺点：代码太长，可读性差
      */
-        boolean tureLocation = true;
-        if (locationType.equals("id")) {
-            element = driverChrome.findElement(By.id(locationValue));
-        } else if (locationType.equals("name")) {
-            element = driverChrome.findElement(By.name(locationValue));
-        } else if (locationType.equals("className")) {
-            element = driverChrome.findElement(By.className(locationValue));
-        } else if (locationType.equals("linkText")) {
-            element = driverChrome.findElement(By.linkText(locationValue));
-        } else if (locationType.equals("partialLinkText")) {
-            element = driverChrome.findElement(By.partialLinkText(locationValue));
-        } else if (locationType.equals("cssSelector")) {
-            element = driverChrome.findElement(By.cssSelector(locationValue));
-        } else if (locationType.equals("tagName")) {
-            element = driverChrome.findElement(By.tagName(locationValue));
-        } else if (locationType.equals("xpath")) {
-            element = driverChrome.findElement(By.xpath(locationValue));
-        } else {
-            System.out.println("无法选择已有方法定位元素");
-            tureLocation = false;
+
+
+        try {
+            boolean tureLocation = true;
+            if (locationType.equals("id")) {
+                element = driverChrome.findElement(By.id(locationValue));
+            } else if (locationType.equals("name")) {
+                element = driverChrome.findElement(By.name(locationValue));
+            } else if (locationType.equals("className")) {
+                element = driverChrome.findElement(By.className(locationValue));
+            } else if (locationType.equals("linkText")) {
+                element = driverChrome.findElement(By.linkText(locationValue));
+            } else if (locationType.equals("partialLinkText")) {
+                element = driverChrome.findElement(By.partialLinkText(locationValue));
+            } else if (locationType.equals("cssSelector")) {
+                element = driverChrome.findElement(By.cssSelector(locationValue));
+            } else if (locationType.equals("tagName")) {
+                element = driverChrome.findElement(By.tagName(locationValue));
+            } else if (locationType.equals("xpath")) {
+                element = driverChrome.findElement(By.xpath(locationValue));
+            } else {
+                System.out.println("未存在" + locationType + "该定位方法");
+                tureLocation = false;
+            }
+            Assert.assertTrue("",tureLocation);
+
+        } catch (AssertionError assertionError) {
+            logger.error("未存在" + locationType + "该定位方法，无法定位元素！！！" + assertionError.getMessage());
+            throw new AssertionError("未存在" + locationType + "该定位方法，无法定位元素！！！");
+
+
+        } catch (NoSuchElementException noFindElementError) {
+            logger.error("无法通过" + locationValue + "查找到该元素！！！" + noFindElementError.getMessage());
+            throw new NoSuchElementException("无法通过查找到该元素！！！");
         }
-        Assert.assertTrue("传入的" + locationType + "方法无法定位元素", tureLocation);
 
         return element;
 
