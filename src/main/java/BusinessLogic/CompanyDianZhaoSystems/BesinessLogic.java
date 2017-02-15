@@ -145,7 +145,42 @@ public class BesinessLogic {
     }*/
 
     //    经办人渠道申请审核
-    public void channelApplyTranscactor() {
+    public void channelApplyTranscactor(String serialNo) throws InterruptedException {
+        ElementOperation.elementOperation("xpath", ".//*[@id='qdManage']/a", "click", null);//点击渠道申请
+        Thread.sleep(1000);
+        SerachAndSelect.searchSelect(serialNo);
+        //点击“申请审核”
+        ElementOperation.elementOperation("xpath", ".//*[@id='centerBtn']/a[2]/span/span[1]", "click", null);
+        //下级审批人
+        ElementOperation.elementOperation("xpath", ".//*[@id='nextApproverLable']/span/span/span", "click", null);
+        ElementOperation.elementOperation("xpath", "html/body/div[35]/div/div[3]", "click", null);
+
+        ElementOperation.elementOperation("xpath", ".//*[@id='reviewMark']", "sendKeys", "这胚子是备注");
+        //提交
+        ElementOperation.elementOperation("xpath", ".//*[@id='applyReviewResoult']/form/a/span", "click", null);
+        ElementOperation.elementOperation("xpath", "html/body/div[19]/div[2]/div[4]/a/span", "click", null);
+
+        Thread.sleep(2000);
 
     }
+    //经理审核
+    public void channelApplyManageCheck(String serialNo) throws InterruptedException {
+        ElementOperation.elementOperation("xpath", ".//*[@id='qdManage']/a", "click", null);//点击渠道申请
+        Thread.sleep(1000);
+        SerachAndSelect.searchSelect(serialNo);
+
+        //点击“申请审核”
+        ElementOperation.elementOperation("xpath", ".//*[@id='centerBtn']/a[1]/span/span[1]", "click", null);
+        ElementOperation.elementOperation("xpath", ".//*[@id='reviewMark']", "sendKeys", "这胚子是备注");
+
+        //提交
+        ElementOperation.elementOperation("xpath", ".//*[@id='applyReviewResoult']/form/a/span/span[1]", "click", null);
+        ElementOperation.elementOperation("xpath", "html/body/div[19]/div[2]/div[4]/a/span/span", "click", null);
+
+        Thread.sleep(2000);
+    }
+
+
+
+
 }

@@ -17,7 +17,7 @@ public class Login {
         ElementOperation elementOperation = new ElementOperation();
         if (netType.equals("innerNet")) {
             driverChrome.get("http://192.168.1.4:7070/cas/login?service=http://192.168.1.4:8090/dzsq/cas");
-            elementOperation.elementOperation("xpath", ".//*[@id='userName']", "sendKeys", username);
+            elementOperation.elementOperation("xpath", ".//*[@id='username']", "sendKeys", username);
             elementOperation.elementOperation("xpath", ".//*[@id='password']", "sendKeys", password);
             elementOperation.elementOperation("xpath", ".//*[@id='login']/div[3]/input[3]", "click", null);
         } else if (netType.equals("outNet")) {
