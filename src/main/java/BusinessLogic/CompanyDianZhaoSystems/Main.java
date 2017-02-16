@@ -77,13 +77,18 @@ public class Main {
         if (step.equals("1")){
             login.login(netType,username,password);
             serialNo = besinessLogic.channelApplyAdd();
+            login.loginOut();
 //            besinessLogic.Test();
         }else if (step.equals("2")){
             login.login(netType,username,password);
             besinessLogic.channelApplyTranscactor(serialNo);
+            login.loginOut();
+
         }else if (step.equals("3")){
             login.login(netType,username,password);
             besinessLogic.channelApplyManageCheck(serialNo);
+            login.loginOut();
+
         }else if (step.equals("4")){
             login.login(netType,username,password);
             besinessLogic.channelApplyTranscactor(serialNo);

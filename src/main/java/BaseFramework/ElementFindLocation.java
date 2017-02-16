@@ -18,7 +18,7 @@ public class ElementFindLocation {
     //初始化log4j的logger,做初始化功能
     private static Logger logger = Logger.getLogger(ElementFindLocation.class);
 
-    public WebElement locationElement(/*WebDriver driverChrome,*/String locationType, String locationValue) {
+    public static WebElement locationElement(/*WebDriver driverChrome,*/String locationType, String locationValue) {
 
         WebElement element = null;   //定义并初始化元素对象
         WebDriver driverChrome = BroswerInit.getDriverBroswer();

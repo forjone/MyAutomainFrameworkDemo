@@ -72,7 +72,7 @@ public class TestClass {
         driverChrome.get("file:///E:/selenium_test/selenium_html/index.html");
         ElementOperation elementOperation = new ElementOperation();
         CrossManage crossManage = new CrossManage();
-        elementOperation.elementOperation("xpath", ".//*[@id='user']", "sendKys", "跨域");
+        elementOperation.elementOperation("xpath", ".//*[@id='user']", "sendKeys", "跨域");
         elementOperation.elementOperation("xpath", ".//*[@id='alert']/input", "click", null);
         crossManage.crossOperation("alert", null, null);
 //        elementOperation.elementOperation("xpath",".//*[@id='confirm']/input","click",null);

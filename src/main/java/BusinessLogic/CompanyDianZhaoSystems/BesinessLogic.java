@@ -5,6 +5,7 @@ import BaseFramework.ElementFindLocation;
 import BaseFramework.ElementOperation;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 import java.awt.*;
 import java.text.DateFormat;
@@ -31,6 +32,8 @@ public class BesinessLogic {
         System.out.println(date12Hour);//以设置的时间格式设定日期（12小时制度）
         return date24Hour;
     }
+
+
 
     public String channelApplyAdd() throws InterruptedException, AWTException {
         ElementFindLocation elementFindLocation = new ElementFindLocation();
@@ -126,6 +129,7 @@ public class BesinessLogic {
         String serialNo = element.getText();
         System.out.println("编号为：" + serialNo);
         Thread.sleep(2000);
+
         return serialNo;
 
     }
