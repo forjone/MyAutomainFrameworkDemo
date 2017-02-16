@@ -1,9 +1,6 @@
 package BusinessLogic;
 
-import BaseFramework.BroswerInit;
-import BaseFramework.CrossManage;
-import BaseFramework.ElementFindLocation;
-import BaseFramework.ElementOperation;
+import BaseFramework.*;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.NoSuchElementException;
@@ -57,12 +54,15 @@ public class TestClass {
 
     @Test
     public void functionTest1() throws InterruptedException {
-
-            driverChrome.get("https://www.baidu.com/");
-            ElementOperation elementOperation = new ElementOperation();
-            elementOperation.elementOperation("id", "kw1", "inputBox", "百度");
-            elementOperation.elementOperation("xpath", ".//*[@id='su']", "click", null);
-            Thread.sleep(5000);
+        ExpectManage expectManage = new ExpectManage();
+        driverChrome.get("https://www.baidu.com/");
+        expectManage.expectManage("title", "百度一下，你就知道", null, null);
+        ElementOperation elementOperation = new ElementOperation();
+        elementOperation.elementOperation("id", "kw", "sendKeys", "百度");
+        Thread.sleep(2000);
+        expectManage.expectManage("title", "百度_百度搜索", null, null);
+        elementOperation.elementOperation("xpath", ".//*[@id='su']", "click", null);
+        Thread.sleep(5000);
 
     }
 
@@ -72,7 +72,7 @@ public class TestClass {
         driverChrome.get("file:///E:/selenium_test/selenium_html/index.html");
         ElementOperation elementOperation = new ElementOperation();
         CrossManage crossManage = new CrossManage();
-        elementOperation.elementOperation("xpath", ".//*[@id='user']", "sendKeys", "跨域");
+        elementOperation.elementOperation("xpath", ".//*[@id='user']", "sendKys", "跨域");
         elementOperation.elementOperation("xpath", ".//*[@id='alert']/input", "click", null);
         crossManage.crossOperation("alert", null, null);
 //        elementOperation.elementOperation("xpath",".//*[@id='confirm']/input","click",null);

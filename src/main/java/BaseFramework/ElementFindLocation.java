@@ -52,16 +52,21 @@ public class ElementFindLocation {
                 System.out.println("未存在" + locationType + "该定位方法");
                 tureLocation = false;
             }
-            Assert.assertTrue("",tureLocation);
+            Assert.assertTrue("", tureLocation);
+        }
+            //通过Try catch和log4j两个方式结合，输出错误日志
 
-        } catch (AssertionError assertionError) {
-            logger.error("未存在" + locationType + "该定位方法，无法定位元素！！！" + assertionError.getMessage());
-            throw new AssertionError("未存在" + locationType + "该定位方法，无法定位元素！！！");
+         catch (AssertionError assertionError) {
+//            logger.error("未存在" + locationType + "该定位方法，无法定位元素！！！" + assertionError.getMessage());
+            logger.error("未存在“" + locationType + "”该定位方法，无法定位元素！！！");
+            logger.error( assertionError.getMessage());
+            throw new AssertionError("未存在“" + locationType + "”该定位方法，无法定位元素！！！");
 
 
         } catch (NoSuchElementException noFindElementError) {
-            logger.error("无法通过" + locationValue + "查找到该元素！！！" + noFindElementError.getMessage());
-            throw new NoSuchElementException("无法通过查找到该元素！！！");
+            logger.error("无法通过“" + locationValue + "”查找到该元素！！！");
+            logger.error(noFindElementError.getMessage());
+            throw new NoSuchElementException("无法通过“" + locationValue + "”查找到该元素！！！");
         }
 
         return element;
