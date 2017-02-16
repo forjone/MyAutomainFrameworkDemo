@@ -204,7 +204,7 @@ public class BesinessLogic {
         Thread.sleep(2000);
 
     }
-
+    //经办人资料回传确认
     public void infoTranscactorCheck(String serialNo) throws InterruptedException {
         //点击渠道申请
         ElementOperation.elementOperation("xpath", ".//*[@id='qdManage']/a", "click", null);
@@ -221,6 +221,40 @@ public class BesinessLogic {
         //点击“确定”
         ElementOperation.elementOperation("xpath","/html/body/div[22]/div[2]/div[4]/a/span/span","click",null);
         Thread.sleep(3000);
+
+    }
+
+    //装修测量
+    public void decorationMeter(String serialNo) throws InterruptedException {
+        //点击渠道申请
+        ElementOperation.elementOperation("xpath", ".//*[@id='qdManage']/a", "click", null);
+
+        //查询待处理记录
+        SerachAndSelect.searchSelect(serialNo);
+        //点击装修测量
+        ElementOperation.elementOperation("xpath",".//*[@id='centerBtn']/a[4]/span/span[1]","click",null);
+        //装修上限金额
+        ElementOperation.elementOperation("xpath", ".//*[@id='limitMoneyDecorate']", "sendKeys", "10000");
+        //装修公司选择
+        ElementOperation.elementOperation("xpath",".//*[@id='companyDiv']/ul[1]/form/li[1]/span/span/span","click",null);
+        Thread.sleep(2000);
+        ElementOperation.elementOperation("xpath","html/body/div[70]/div/div[2]","click",null);
+        ElementOperation.elementOperation("xpath",".//*[@id='companyDiv']/ul[1]/form/li[2]/span/span/span","click",null);
+        ElementOperation.elementOperation("xpath","html/body/div[71]/div/div[1]","click",null);
+        //广告公司选择
+        ElementOperation.elementOperation("xpath",".//*[@id='companyDiv']/ul[2]/form/li[1]/span/span/span","click",null);
+        ElementOperation.elementOperation("xpath","html/body/div[72]/div/div[1]","click",null);
+        ElementOperation.elementOperation("xpath","html/body/div[64]/div[2]/div/div/div/div[4]/div/ul[2]/form/li[2]/span/span/span","click",null);
+        ElementOperation.elementOperation("xpath","html/body/div[73]/div/div[1]","click",null);
+        //提交
+        ElementOperation.elementOperation("xpath",".//*[@id='measureSubmit']/span/span[1]","click",null);
+        Thread.sleep(1000);
+        //结果校验
+        ExpectManage.expectManage("inputBox","操作成功","xpath","html/body/div[64]/div[2]/div[2]");
+        //点击确定
+        ElementOperation.elementOperation("xpath","html/body/div[64]/div[2]/div[4]/a/span/span","click",null);
+
+
 
     }
 
