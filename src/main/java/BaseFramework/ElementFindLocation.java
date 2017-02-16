@@ -60,12 +60,14 @@ public class ElementFindLocation {
 //            logger.error("未存在" + locationType + "该定位方法，无法定位元素！！！" + assertionError.getMessage());
             logger.error("未存在“" + locationType + "”该定位方法，无法定位元素！！！");
             logger.error( assertionError.getMessage());
+             ReoprtManage.photoScreenSave();
             throw new AssertionError("未存在“" + locationType + "”该定位方法，无法定位元素！！！");
 
 
         } catch (NoSuchElementException noFindElementError) {
             logger.error("无法通过“" + locationValue + "”查找到该元素！！！");
             logger.error(noFindElementError.getMessage());
+            ReoprtManage.photoScreenSave();
             throw new NoSuchElementException("无法通过“" + locationValue + "”查找到该元素！！！");
         }
 

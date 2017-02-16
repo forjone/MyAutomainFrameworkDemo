@@ -69,6 +69,7 @@ public class ElementOperation {
 //            logger.error("未存在" + locationType + "该定位方法，无法定位元素！！！" + assertionError.getMessage());
                 logger.error("此对象不支持“" + operation + "”操作方法");
                 logger.error( assertionError.getMessage());
+                ReoprtManage.photoScreenSave();
 //                throw new AssertionError("此对象不支持“" + operation + "”操作方法");
                 throw assertionError;
 

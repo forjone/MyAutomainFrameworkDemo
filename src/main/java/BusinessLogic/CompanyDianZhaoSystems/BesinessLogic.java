@@ -3,6 +3,7 @@ package BusinessLogic.CompanyDianZhaoSystems;
 import BaseFramework.BroswerInit;
 import BaseFramework.ElementFindLocation;
 import BaseFramework.ElementOperation;
+import BaseFramework.ExpectManage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -29,12 +30,12 @@ public class BesinessLogic {
         String date24Hour = dateFormat1.format(dateTime);
         String date12Hour = dateFormat2.format(dateTime);
         System.out.println(date24Hour);//以设置的时间格式设定日期（24小时制度）
-        System.out.println(date12Hour);//以设置的时间格式设定日期（12小时制度）
+//        System.out.println(date12Hour);//以设置的时间格式设定日期（12小时制度）
         return date24Hour;
     }
 
 
-
+    //经销商新增店铺申请
     public String channelApplyAdd() throws InterruptedException, AWTException {
         ElementFindLocation elementFindLocation = new ElementFindLocation();
         String timeChar = getTime();
@@ -133,20 +134,6 @@ public class BesinessLogic {
         return serialNo;
 
     }
-/*
-//测试获得编号的用例
-    public void Test() throws InterruptedException {
-        ElementFindLocation elementFindLocation = new ElementFindLocation();
-
-        ElementOperation.elementOperation("xpath", "./*//*[@id='queryShopName']", "sendKeys", "发哥的店铺1");
-        ElementOperation.elementOperation("xpath", "html/body/div[1]/div[2]/div/div/div[1]/div/div[2]/ul/li[6]/a[1]/span/span[1]", "click", null);
-        Thread.sleep(2000);
-        WebElement element = elementFindLocation.locationElement("xpath", "./*//*[@id='datagrid-row-r2-1-0']/td[12]/div");
-        String serialNo = element.getText();
-        System.out.println("编号为：" + serialNo);
-
-        Thread.sleep(2000);
-    }*/
 
     //    经办人渠道申请审核
     public void channelApplyTranscactor(String serialNo) throws InterruptedException {
@@ -184,7 +171,58 @@ public class BesinessLogic {
         Thread.sleep(2000);
     }
 
+    //经销商资料回传
+    public void  infoConfirm(String serialNo) throws InterruptedException {
+        //点击渠道申请
+        ElementOperation.elementOperation("xpath", ".//*[@id='qdManage']/a", "click", null);
 
+        //查询待处理记录
+        SerachAndSelect.searchSelect(serialNo);
+
+        //点击资料回传
+        ElementOperation.elementOperation("xpath",".//*[@id='centerBtn']/a[4]/span/span[1]","click",null);
+
+        //点击上传附件按钮 .//*[@id='SWFUpload_0']
+        ElementOperation.elementOperation("xpath",".//*[@id='upLoadBtn']/span/span","click",null);
+        Thread.sleep(1000);
+        //选择文件
+        ElementOperation.elementOperation("xpath", "//*[@id=\"SWFUpload_0\"]", "click", null);
+        Thread.sleep(5000);
+        //开始上传
+        ElementOperation.elementOperation("xpath", "//*[@id=\"upload_dialog\"]/div/div/center/ul/li[3]/a/span/span[1]", "click", null);
+        Thread.sleep(1000);
+        //上传成功-确定按钮
+        ElementOperation.elementOperation("xpath", "/html/body/div[25]/div[2]/div[4]/a/span/span", "click", null);
+
+        //确认回传
+        ElementOperation.elementOperation("xpath", ".//*[@id='dealerSubmit']/span/span[1]", "click", null);
+        Thread.sleep(1000);
+        //校验提交结果
+        ExpectManage.expectManage("inputBox","操作成功！","xpath","html/body/div[22]/div[2]/div[2]");
+        //确认操作成功
+        ElementOperation.elementOperation("xpath", "html/body/div[22]/div[2]/div[4]/a/span/span", "click", null);
+        Thread.sleep(2000);
+
+    }
+
+    public void infoTranscactorCheck(String serialNo) throws InterruptedException {
+        //点击渠道申请
+        ElementOperation.elementOperation("xpath", ".//*[@id='qdManage']/a", "click", null);
+
+        //查询待处理记录
+        SerachAndSelect.searchSelect(serialNo);
+        //点击资料回传
+        ElementOperation.elementOperation("xpath",".//*[@id='centerBtn']/a[3]/span/span[1]","click",null);
+        //点击“通过”按钮
+        ElementOperation.elementOperation("xpath",".//*[@id='passed']/span/span[1]","click",null);
+        Thread.sleep(500);
+        //结果校验
+        ExpectManage.expectManage("inputBox","操作成功！","xpath","html/body/div[22]/div[2]/div[2]");
+        //点击“确定”
+        ElementOperation.elementOperation("xpath","/html/body/div[22]/div[2]/div[4]/a/span/span","click",null);
+        Thread.sleep(3000);
+
+    }
 
 
 }

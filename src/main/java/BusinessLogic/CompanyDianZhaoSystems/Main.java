@@ -10,7 +10,7 @@ import java.awt.*;
  * Created by thinkpad on 2017/2/13.
  */
 public class Main {
-    String serialNo = null;
+    String serialNo = "201702161653009";
 
     @DataProvider(name = "loginAccount")
     public Object[][] data() {
@@ -42,8 +42,8 @@ public class Main {
                 {"1", "outNet", "cst010106", "a123456789"},    //新增申请
                 {"2", "innerNet", "cstp06165", "cstp06165"},   //同意申请并传到上级
                 {"3", "innerNet", "csta931", "csta931"},       //经理审批
-//                {"4", "outNet", "cst010106", "a123456789"},    //资料回传
-//                {"5", "innerNet", "cstp06165", "cstp06165"},   //资料回传确认
+                {"4", "outNet", "cst010106", "a123456789"},    //资料回传
+                {"5", "innerNet", "cstp06165", "cstp06165"},   //资料回传确认
 //                {"6", "innerNet", "cstp06165", "cstp06165"},   //经办人装修测量
 //                {"7", "outNet", "cst030001", "cst030001"},   //装修公司成本报价
 //                {"8", "innerNet", "cstp06165", "cstp06165"},   //经办人成本审批
@@ -91,13 +91,19 @@ public class Main {
 
         }else if (step.equals("4")){
             login.login(netType,username,password);
-            besinessLogic.channelApplyTranscactor(serialNo);
+            besinessLogic.infoConfirm(serialNo);
+            login.loginOut();
+
         }else if (step.equals("5")){
             login.login(netType,username,password);
-            besinessLogic.channelApplyTranscactor(serialNo);
+            besinessLogic.infoTranscactorCheck(serialNo);
+            login.loginOut();
+
         }else if (step.equals("6")){
             login.login(netType,username,password);
             besinessLogic.channelApplyTranscactor(serialNo);
+            login.loginOut();
+
         }else if (step.equals("7")){
 
         }else if (step.equals("2")){
