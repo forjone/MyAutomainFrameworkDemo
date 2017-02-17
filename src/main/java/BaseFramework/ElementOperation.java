@@ -3,6 +3,7 @@ package BaseFramework;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -73,6 +74,12 @@ public class ElementOperation {
 //                throw new AssertionError("此对象不支持“" + operation + "”操作方法");
                 throw assertionError;
 
+
+        }catch(ElementNotVisibleException elementNoVisible){
+            logger.error("对象“" + locationValue + "”不可见，可能被遮挡");
+            logger.error( elementNoVisible.getMessage());
+            ReoprtManage.photoScreenSave();
+            throw elementNoVisible;
 
         }
 

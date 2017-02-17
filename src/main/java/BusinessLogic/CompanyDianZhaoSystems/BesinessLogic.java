@@ -35,6 +35,21 @@ public class BesinessLogic {
         return date24Hour;
     }
 
+    //单项成本报价
+    private void costCount(String clickElement, String sendKeysElement, String value) {
+        //数量
+        ElementOperation.elementOperation("xpath", clickElement, "click", null);
+        ElementOperation.elementOperation("xpath", sendKeysElement, "sendKeys", value);
+    }
+
+    private void costArea(String longMeterClick, String longMeterSend, String widthMeterSend, String longValue, String widthValue) {
+        //长
+        ElementOperation.elementOperation("xpath", longMeterClick, "click", null);
+        ElementOperation.elementOperation("xpath", longMeterSend, "sendKeys", longValue);
+        //宽
+//        ElementOperation.elementOperation("xpath", widthMeterClick, "click", null);
+        ElementOperation.elementOperation("xpath", widthMeterSend, "sendKeys", widthValue);
+    }
 
     //经销商新增店铺申请
     public String channelApplyAdd() throws InterruptedException, AWTException {
@@ -155,6 +170,7 @@ public class BesinessLogic {
         Thread.sleep(2000);
 
     }
+
     //经理审核
     public void channelApplyManageCheck(String serialNo) throws InterruptedException {
         ElementOperation.elementOperation("xpath", ".//*[@id='qdManage']/a", "click", null);//点击渠道申请
@@ -173,7 +189,7 @@ public class BesinessLogic {
     }
 
     //经销商资料回传
-    public void  infoConfirm(String serialNo) throws InterruptedException {
+    public void infoConfirm(String serialNo) throws InterruptedException {
         //点击渠道申请
         ElementOperation.elementOperation("xpath", ".//*[@id='qdManage']/a", "click", null);
 
@@ -181,10 +197,10 @@ public class BesinessLogic {
         SerachAndSelect.searchSelect(serialNo);
 
         //点击资料回传
-        ElementOperation.elementOperation("xpath",".//*[@id='centerBtn']/a[4]/span/span[1]","click",null);
+        ElementOperation.elementOperation("xpath", ".//*[@id='centerBtn']/a[4]/span/span[1]", "click", null);
 
         //点击上传附件按钮 .//*[@id='SWFUpload_0']
-        ElementOperation.elementOperation("xpath",".//*[@id='upLoadBtn']/span/span","click",null);
+        ElementOperation.elementOperation("xpath", ".//*[@id='upLoadBtn']/span/span", "click", null);
         Thread.sleep(1000);
         //选择文件
         ElementOperation.elementOperation("xpath", "//*[@id=\"SWFUpload_0\"]", "click", null);
@@ -199,12 +215,13 @@ public class BesinessLogic {
         ElementOperation.elementOperation("xpath", ".//*[@id='dealerSubmit']/span/span[1]", "click", null);
         Thread.sleep(1000);
         //校验提交结果
-        ExpectManage.expectManage("inputBox","操作成功！","xpath","html/body/div[22]/div[2]/div[2]");
+        ExpectManage.expectManage("inputBox", "操作成功！", "xpath", "html/body/div[22]/div[2]/div[2]");
         //确认操作成功
         ElementOperation.elementOperation("xpath", "html/body/div[22]/div[2]/div[4]/a/span/span", "click", null);
         Thread.sleep(2000);
 
     }
+
     //经办人资料回传确认
     public void infoTranscactorCheck(String serialNo) throws InterruptedException {
         //点击渠道申请
@@ -213,14 +230,14 @@ public class BesinessLogic {
         //查询待处理记录
         SerachAndSelect.searchSelect(serialNo);
         //点击资料回传
-        ElementOperation.elementOperation("xpath",".//*[@id='centerBtn']/a[3]/span/span[1]","click",null);
+        ElementOperation.elementOperation("xpath", ".//*[@id='centerBtn']/a[3]/span/span[1]", "click", null);
         //点击“通过”按钮
-        ElementOperation.elementOperation("xpath",".//*[@id='passed']/span/span[1]","click",null);
+        ElementOperation.elementOperation("xpath", ".//*[@id='passed']/span/span[1]", "click", null);
         Thread.sleep(500);
         //结果校验
-        ExpectManage.expectManage("inputBox","操作成功！","xpath","html/body/div[22]/div[2]/div[2]");
+        ExpectManage.expectManage("inputBox", "操作成功！", "xpath", "html/body/div[22]/div[2]/div[2]");
         //点击“确定”
-        ElementOperation.elementOperation("xpath","/html/body/div[22]/div[2]/div[4]/a/span/span","click",null);
+        ElementOperation.elementOperation("xpath", "/html/body/div[22]/div[2]/div[4]/a/span/span", "click", null);
         Thread.sleep(3000);
 
     }
@@ -233,28 +250,92 @@ public class BesinessLogic {
         //查询待处理记录
         SerachAndSelect.searchSelect(serialNo);
         //点击装修测量
-        ElementOperation.elementOperation("xpath",".//*[@id='centerBtn']/a[4]/span/span[1]","click",null);
+        ElementOperation.elementOperation("xpath", ".//*[@id='centerBtn']/a[4]/span/span[1]", "click", null);
         //装修上限金额
         ElementOperation.elementOperation("xpath", ".//*[@id='limitMoneyDecorate']", "sendKeys", "10000");
         //装修公司选择
-        ElementOperation.elementOperation("xpath",".//*[@id='companyDiv']/ul[1]/form/li[1]/span/span/span","click",null);
-        ElementOperation.elementOperation("xpath","html/body/div[22]/div/div[2]","click",null);
-        ElementOperation.elementOperation("xpath",".//*[@id='companyDiv']/ul[1]/form/li[2]/span/span/span","click",null);
-        ElementOperation.elementOperation("xpath","html/body/div[23]/div/div[1]","click",null);
+        ElementOperation.elementOperation("xpath", ".//*[@id='companyDiv']/ul[1]/form/li[1]/span/span/span", "click", null);
+        ElementOperation.elementOperation("xpath", "html/body/div[22]/div/div[2]", "click", null);
+        ElementOperation.elementOperation("xpath", ".//*[@id='companyDiv']/ul[1]/form/li[2]/span/span/span", "click", null);
+        ElementOperation.elementOperation("xpath", "html/body/div[23]/div/div[1]", "click", null);
 //        Thread.sleep(50000);
         //广告公司选择
-        ElementOperation.elementOperation("xpath",".//*[@id='companyDiv']/ul[2]/form/li[1]/span/span/span","click",null);
-        ElementOperation.elementOperation("xpath","html/body/div[24]/div/div[1]","click",null);
-        ElementOperation.elementOperation("xpath",".//*[@id='companyDiv']/ul[2]/form/li[2]/span/span/span","click",null);
-        ElementOperation.elementOperation("xpath","html/body/div[25]/div/div[1]","click",null);
+        ElementOperation.elementOperation("xpath", ".//*[@id='companyDiv']/ul[2]/form/li[1]/span/span/span", "click", null);
+        ElementOperation.elementOperation("xpath", "html/body/div[24]/div/div[1]", "click", null);
+        ElementOperation.elementOperation("xpath", ".//*[@id='companyDiv']/ul[2]/form/li[2]/span/span/span", "click", null);
+        ElementOperation.elementOperation("xpath", "html/body/div[25]/div/div[1]", "click", null);
         //提交
-        ElementOperation.elementOperation("xpath",".//*[@id='measureSubmit']/span/span[1]","click",null);
+        ElementOperation.elementOperation("xpath", ".//*[@id='measureSubmit']/span/span[1]", "click", null);
         Thread.sleep(1000);
         //结果校验
-        ExpectManage.expectManage("inputBox","操作成功","xpath","html/body/div[16]/div[2]/div[2]");
+        ExpectManage.expectManage("inputBox", "操作成功", "xpath", "html/body/div[16]/div[2]/div[2]");
         //点击确定
-        ElementOperation.elementOperation("xpath","html/body/div[16]/div[2]/div[4]/a/span/span","click",null);
+        ElementOperation.elementOperation("xpath", "html/body/div[16]/div[2]/div[4]/a/span/span", "click", null);
 
+
+    }
+
+    public void costOffer(String serialNo) throws InterruptedException {
+        //点击渠道申请
+        ElementOperation.elementOperation("xpath", ".//*[@id='qdManage']/a", "click", null);
+
+        //查询待处理记录
+        SerachAndSelect.searchSelect(serialNo);
+        //点击成本报价
+        ElementOperation.elementOperation("xpath", ".//*[@id='centerBtn']/a[1]/span/span[1]", "click", null);
+        //硬件设备
+        costCount("html/body/div[16]/div[2]/div/div/div/div[1]/div/div[1]/div[2]/div[2]/div/div/div[2]/div[2]/table/tbody/tr[1]/td[8]", "html/body/div[16]/div[2]/div/div/div/div[1]/div/div[1]/div[2]/div[2]/div/div/div[2]/div[2]/table/tbody/tr[1]/td[8]/div/table/tbody/tr/td/input[1]", "1");
+        costArea("html/body/div[16]/div[2]/div/div/div/div[1]/div/div[1]/div[2]/div[2]/div/div/div[2]/div[2]/table/tbody/tr[2]/td[6]", "html/body/div[16]/div[2]/div/div/div/div[1]/div/div[1]/div[2]/div[2]/div/div/div[2]/div[2]/table/tbody/tr[2]/td[6]/div/table/tbody/tr/td/input[1]", "html/body/div[16]/div[2]/div/div/div/div[1]/div/div[1]/div[2]/div[2]/div/div/div[2]/div[2]/table/tbody/tr[2]/td[7]/div/table/tbody/tr/td/input[1]", "1", "1");
+
+        costCount("html/body/div[16]/div[2]/div/div/div/div[1]/div/div[1]/div[2]/div[2]/div/div/div[2]/div[2]/table/tbody/tr[3]/td[8]", "html/body/div[16]/div[2]/div/div/div/div[1]/div/div[1]/div[2]/div[2]/div/div/div[2]/div[2]/table/tbody/tr[3]/td[8]/div/table/tbody/tr/td/input[1]", "1");
+        costCount("html/body/div[16]/div[2]/div/div/div/div[1]/div/div[1]/div[2]/div[2]/div/div/div[2]/div[2]/table/tbody/tr[4]/td[8]", "html/body/div[16]/div[2]/div/div/div/div[1]/div/div[1]/div[2]/div[2]/div/div/div[2]/div[2]/table/tbody/tr[4]/td[8]/div/table/tbody/tr/td/input[1]", "1");
+        costCount("html/body/div[16]/div[2]/div/div/div/div[1]/div/div[1]/div[2]/div[2]/div/div/div[2]/div[2]/table/tbody/tr[5]/td[8]", "html/body/div[16]/div[2]/div/div/div/div[1]/div/div[1]/div[2]/div[2]/div/div/div[2]/div[2]/table/tbody/tr[5]/td[8]/div/table/tbody/tr/td/input[1]", "1");
+        //室外
+        costCount("html/body/div[16]/div[2]/div/div/div/div[1]/div/div[2]/div/div/div/div[2]/div[2]/table/tbody/tr[1]/td[8]", "html/body/div[16]/div[2]/div/div/div/div[1]/div/div[2]/div/div/div/div[2]/div[2]/table/tbody/tr[1]/td[8]/div/table/tbody/tr/td/input[1]", "1");
+        costCount("html/body/div[16]/div[2]/div/div/div/div[1]/div/div[2]/div/div/div/div[2]/div[2]/table/tbody/tr[2]/td[8]", "html/body/div[16]/div[2]/div/div/div/div[1]/div/div[2]/div/div/div/div[2]/div[2]/table/tbody/tr[2]/td[8]/div/table/tbody/tr/td/input[1]", "1");
+        costCount("html/body/div[16]/div[2]/div/div/div/div[1]/div/div[2]/div/div/div/div[2]/div[2]/table/tbody/tr[3]/td[8]", "html/body/div[16]/div[2]/div/div/div/div[1]/div/div[2]/div/div/div/div[2]/div[2]/table/tbody/tr[3]/td[8]/div/table/tbody/tr/td/input[1]", "1");
+        costArea("html/body/div[16]/div[2]/div/div/div/div[1]/div/div[2]/div/div/div/div[2]/div[2]/table/tbody/tr[4]/td[6]", "html/body/div[16]/div[2]/div/div/div/div[1]/div/div[2]/div/div/div/div[2]/div[2]/table/tbody/tr[4]/td[6]/div/table/tbody/tr/td/input[1]", "html/body/div[16]/div[2]/div/div/div/div[1]/div/div[2]/div/div/div/div[2]/div[2]/table/tbody/tr[4]/td[7]/div/table/tbody/tr/td/input[1]", "1", "1");
+        costArea("html/body/div[16]/div[2]/div/div/div/div[1]/div/div[2]/div/div/div/div[2]/div[2]/table/tbody/tr[5]/td[8]", "html/body/div[16]/div[2]/div/div/div/div[1]/div/div[2]/div/div/div/div[2]/div[2]/table/tbody/tr[5]/td[6]/div/table/tbody/tr/td/input[1]", "html/body/div[16]/div[2]/div/div/div/div[1]/div/div[2]/div/div/div/div[2]/div[2]/table/tbody/tr[5]/td[7]/div/table/tbody/tr/td/input[1]", "1", "1");
+        costArea("html/body/div[16]/div[2]/div/div/div/div[1]/div/div[2]/div/div/div/div[2]/div[2]/table/tbody/tr[6]/td[8]", "html/body/div[16]/div[2]/div/div/div/div[1]/div/div[2]/div/div/div/div[2]/div[2]/table/tbody/tr[6]/td[6]/div/table/tbody/tr/td/input[1]", "html/body/div[16]/div[2]/div/div/div/div[1]/div/div[2]/div/div/div/div[2]/div[2]/table/tbody/tr[6]/td[7]/div/table/tbody/tr/td/input[1]", "1", "1");
+
+        //室内
+        costArea("html/body/div[16]/div[2]/div/div/div/div[1]/div/div[3]/div[1]/div/div/div/div[2]/div[2]/table/tbody/tr[1]/td[8]", "html/body/div[16]/div[2]/div/div/div/div[1]/div/div[3]/div[1]/div/div/div/div[2]/div[2]/table/tbody/tr[1]/td[6]/div/table/tbody/tr/td/input[1]", "html/body/div[16]/div[2]/div/div/div/div[1]/div/div[3]/div[1]/div/div/div/div[2]/div[2]/table/tbody/tr[1]/td[7]/div/table/tbody/tr/td/input[1]", "1", "1");
+        costCount("html/body/div[16]/div[2]/div/div/div/div[1]/div/div[3]/div[1]/div/div/div/div[2]/div[2]/table/tbody/tr[2]/td[8]", "html/body/div[16]/div[2]/div/div/div/div[1]/div/div[3]/div[1]/div/div/div/div[2]/div[2]/table/tbody/tr[2]/td[8]/div/table/tbody/tr/td/input[1]", "1");
+        costCount("html/body/div[16]/div[2]/div/div/div/div[1]/div/div[3]/div[1]/div/div/div/div[2]/div[2]/table/tbody/tr[3]/td[8]", "html/body/div[16]/div[2]/div/div/div/div[1]/div/div[3]/div[1]/div/div/div/div[2]/div[2]/table/tbody/tr[3]/td[8]/div/table/tbody/tr/td/input[1]", "1");
+        costArea("html/body/div[16]/div[2]/div/div/div/div[1]/div/div[3]/div[1]/div/div/div/div[2]/div[2]/table/tbody/tr[4]/td[8]", "html/body/div[16]/div[2]/div/div/div/div[1]/div/div[3]/div[1]/div/div/div/div[2]/div[2]/table/tbody/tr[4]/td[6]/div/table/tbody/tr/td/input[1]", "html/body/div[16]/div[2]/div/div/div/div[1]/div/div[3]/div[1]/div/div/div/div[2]/div[2]/table/tbody/tr[4]/td[7]/div/table/tbody/tr/td/input[1]", "1", "1");
+        costArea("html/body/div[16]/div[2]/div/div/div/div[1]/div/div[3]/div[1]/div/div/div/div[2]/div[2]/table/tbody/tr[5]/td[8]", "html/body/div[16]/div[2]/div/div/div/div[1]/div/div[3]/div[1]/div/div/div/div[2]/div[2]/table/tbody/tr[5]/td[6]/div/table/tbody/tr/td/input[1]", "html/body/div[16]/div[2]/div/div/div/div[1]/div/div[3]/div[1]/div/div/div/div[2]/div[2]/table/tbody/tr[5]/td[7]/div/table/tbody/tr/td/input[1]", "1", "1");
+        costArea("html/body/div[16]/div[2]/div/div/div/div[1]/div/div[3]/div[1]/div/div/div/div[2]/div[2]/table/tbody/tr[6]/td[8]", "html/body/div[16]/div[2]/div/div/div/div[1]/div/div[3]/div[1]/div/div/div/div[2]/div[2]/table/tbody/tr[6]/td[6]/div/table/tbody/tr/td/input[1]", "html/body/div[16]/div[2]/div/div/div/div[1]/div/div[3]/div[1]/div/div/div/div[2]/div[2]/table/tbody/tr[6]/td[7]/div/table/tbody/tr/td/input[1]", "1", "1");
+        costCount("html/body/div[16]/div[2]/div/div/div/div[1]/div/div[3]/div[1]/div/div/div/div[2]/div[2]/table/tbody/tr[7]/td[8]", "html/body/div[16]/div[2]/div/div/div/div[1]/div/div[3]/div[1]/div/div/div/div[2]/div[2]/table/tbody/tr[7]/td[8]/div/table/tbody/tr/td/input[1]", "1");
+        costArea("html/body/div[16]/div[2]/div/div/div/div[1]/div/div[3]/div[1]/div/div/div/div[2]/div[2]/table/tbody/tr[8]/td[8]", "html/body/div[16]/div[2]/div/div/div/div[1]/div/div[3]/div[1]/div/div/div/div[2]/div[2]/table/tbody/tr[8]/td[6]/div/table/tbody/tr/td/input[1]", "html/body/div[16]/div[2]/div/div/div/div[1]/div/div[3]/div[1]/div/div/div/div[2]/div[2]/table/tbody/tr[8]/td[7]/div/table/tbody/tr/td/input[1]", "1", "1");
+
+        //其他
+        costCount("html/body/div[16]/div[2]/div/div/div/div[1]/div/div[3]/div[2]/div[1]/div/div/div/div[2]/div[2]/table/tbody/tr[1]/td[8]", "html/body/div[16]/div[2]/div/div/div/div[1]/div/div[3]/div[2]/div[1]/div/div/div/div[2]/div[2]/table/tbody/tr[1]/td[8]/div/table/tbody/tr/td/input[1]", "1");
+        costCount("html/body/div[16]/div[2]/div/div/div/div[1]/div/div[3]/div[2]/div[1]/div/div/div/div[2]/div[2]/table/tbody/tr[2]/td[8]", "html/body/div[16]/div[2]/div/div/div/div[1]/div/div[3]/div[2]/div[1]/div/div/div/div[2]/div[2]/table/tbody/tr[2]/td[8]/div/table/tbody/tr/td/input[1]", "1");
+        costCount("html/body/div[16]/div[2]/div/div/div/div[1]/div/div[3]/div[2]/div[1]/div/div/div/div[2]/div[2]/table/tbody/tr[3]/td[8]", "html/body/div[16]/div[2]/div/div/div/div[1]/div/div[3]/div[2]/div[1]/div/div/div/div[2]/div[2]/table/tbody/tr[3]/td[8]/div/table/tbody/tr/td/input[1]", "1");
+        costCount("html/body/div[16]/div[2]/div/div/div/div[1]/div/div[3]/div[2]/div[1]/div/div/div/div[2]/div[2]/table/tbody/tr[4]/td[8]", "html/body/div[16]/div[2]/div/div/div/div[1]/div/div[3]/div[2]/div[1]/div/div/div/div[2]/div[2]/table/tbody/tr[4]/td[8]/div/table/tbody/tr/td/input[1]", "1");
+        costCount("html/body/div[16]/div[2]/div/div/div/div[1]/div/div[3]/div[2]/div[1]/div/div/div/div[2]/div[2]/table/tbody/tr[5]/td[8]", "html/body/div[16]/div[2]/div/div/div/div[1]/div/div[3]/div[2]/div[1]/div/div/div/div[2]/div[2]/table/tbody/tr[5]/td[8]/div/table/tbody/tr/td/input[1]", "1");
+        costCount("html/body/div[16]/div[2]/div/div/div/div[1]/div/div[3]/div[2]/div[1]/div/div/div/div[2]/div[2]/table/tbody/tr[6]/td[8]", "html/body/div[16]/div[2]/div/div/div/div[1]/div/div[3]/div[2]/div[1]/div/div/div/div[2]/div[2]/table/tbody/tr[6]/td[8]/div/table/tbody/tr/td/input[1]", "1");
+
+        //附件上传
+        ElementOperation.elementOperation("xpath", ".//*[@id='upLoadBtn']/span/span", "click", null);
+        Thread.sleep(1000);
+        ElementOperation.elementOperation("xpath", "//*[@id=\"SWFUpload_0\"]", "click", null);
+        Thread.sleep(5000);
+        //开始上传
+        ElementOperation.elementOperation("xpath", "//*[@id=\"upload_dialog\"]/div/div/center/ul/li[3]/a/span/span[1]", "click", null);
+        Thread.sleep(1000);
+        ExpectManage.expectManage("inputBox","上传成功!","xpath","/html/body/div[57]/div[2]/div[2]");
+        ElementOperation.elementOperation("xpath", "/html/body/div[57]/div[2]/div[4]/a/span", "click", null);
+
+
+        //提交
+
+        ElementOperation.elementOperation("xpath", ".//*[@id='btnSubmitQuotation']/span/span[1]", "click", null);
+
+        //结果校验
+        ExpectManage.expectManage("inputBox","操作成功","xpath","/html/body/div[40]/div[2]/div[2]");
+        //点击确定
+        ElementOperation.elementOperation("xpath", "/html/body/div[40]/div[2]/div[4]/a/span/span", "click", null);
 
     }
 

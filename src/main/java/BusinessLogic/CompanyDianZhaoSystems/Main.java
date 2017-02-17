@@ -10,7 +10,7 @@ import java.awt.*;
  * Created by thinkpad on 2017/2/13.
  */
 public class Main {
-    String serialNo = "201702161659074";
+    String serialNo = "201702161723133";
 
     @DataProvider(name = "loginAccount")
     public Object[][] data() {
@@ -39,9 +39,14 @@ public class Main {
                 {"innerNet","cst0001","cst0001"},       //总经理完工审核
                 {"innerNet","cstp06165","cstp06165"},   //经办人报核完成
                 */
-            //资料回传确认
-                {"6", "innerNet", "cstp06165", "cstp06165"},   //经办人装修测量
-//                {"7", "outNet", "cst030001", "cst030001"},   //装修公司成本报价
+
+//                {"1", "outNet", "cst010106", "a123456789"},    //新增申请
+//                {"2", "innerNet", "cstp06165", "cstp06165"},   //同意申请并传到上级
+//                {"3", "innerNet", "csta931", "csta931"},       //经理审批
+//                {"4", "outNet", "cst010106", "a123456789"},    //资料回传
+//                {"5", "innerNet", "cstp06165", "cstp06165"},   //资料回传确认
+//                {"6", "innerNet", "cstp06165", "cstp06165"},   //经办人装修测量
+                {"7", "outNet", "cst030001", "cst030001"},   //装修公司成本报价
 //                {"8", "innerNet", "cstp06165", "cstp06165"},   //经办人成本审批
 //                {"9", "innerNet", "csta931", "csta931"},       //经理审批
 //                {"10", "outNet", "cst040001", "cst040001"},   //广告公司字体报价
@@ -70,68 +75,93 @@ public class Main {
     public void mainTest(String step, String netType, String username, String password) throws InterruptedException, AWTException {
         Login login = new Login();
         BesinessLogic besinessLogic = new BesinessLogic();
-        if (step.equals("1")){
-            login.login(netType,username,password);
+        if (step.equals("1")) {
+            login.login(netType, username, password);
             serialNo = besinessLogic.channelApplyAdd();
             login.loginOut();
 //            besinessLogic.Test();
-        }else if (step.equals("2")){
-            login.login(netType,username,password);
+        } else if (step.equals("2")) {
+            login.login(netType, username, password);
             besinessLogic.channelApplyTranscactor(serialNo);
             login.loginOut();
 
-        }else if (step.equals("3")){
-            login.login(netType,username,password);
+        } else if (step.equals("3")) {
+            login.login(netType, username, password);
             besinessLogic.channelApplyManageCheck(serialNo);
             login.loginOut();
 
-        }else if (step.equals("4")){
-            login.login(netType,username,password);
+        } else if (step.equals("4")) {
+            login.login(netType, username, password);
             besinessLogic.infoConfirm(serialNo);
             login.loginOut();
 
-        }else if (step.equals("5")){
-            login.login(netType,username,password);
+        } else if (step.equals("5")) {
+            login.login(netType, username, password);
             besinessLogic.infoTranscactorCheck(serialNo);
             login.loginOut();
 
-        }else if (step.equals("6")){
-            login.login(netType,username,password);
+        } else if (step.equals("6")) {
+            login.login(netType, username, password);
             besinessLogic.decorationMeter(serialNo);
             login.loginOut();
 
-        }else if (step.equals("7")){
-
-        }else if (step.equals("2")){
-
-        }else if (step.equals("2")){
-
-        }else if (step.equals("2")){
-
-        }else if (step.equals("2")){
-
-        }else if (step.equals("2")){
-
-        }else if (step.equals("2")){
-
-        }else if (step.equals("2")){
-
-        }else if (step.equals("2")){
-
-        }else if (step.equals("2")){
-
-        }else if (step.equals("2")){
-
-        }else if (step.equals("2")){
-
-        }else if (step.equals("2")){
-
+        } else if (step.equals("7")) {
+            login.login(netType, username, password);
+            besinessLogic.costOffer(serialNo);
+            login.loginOut();
+        } else if (step.equals("8")) {
+            login.login(netType, username, password);
+            besinessLogic.costOffer(serialNo);
+            login.loginOut();
+        } else if (step.equals("9")) {
+            login.login(netType, username, password);
+            besinessLogic.costOffer(serialNo);
+            login.loginOut();
+        } else if (step.equals("10")) {
+            login.login(netType, username, password);
+            besinessLogic.costOffer(serialNo);
+            login.loginOut();
+        } else if (step.equals("11")) {
+            login.login(netType, username, password);
+            besinessLogic.costOffer(serialNo);
+            login.loginOut();
+        } else if (step.equals("12")) {
+            login.login(netType, username, password);
+            besinessLogic.costOffer(serialNo);
+            login.loginOut();
+        } else if (step.equals("13")) {
+            login.login(netType, username, password);
+            besinessLogic.costOffer(serialNo);
+            login.loginOut();
+        } else if (step.equals("14")) {
+            login.login(netType, username, password);
+            besinessLogic.costOffer(serialNo);
+            login.loginOut();
+        } else if (step.equals("15")) {
+            login.login(netType, username, password);
+            besinessLogic.costOffer(serialNo);
+            login.loginOut();
+        } else if (step.equals("16")) {
+            login.login(netType, username, password);
+            besinessLogic.costOffer(serialNo);
+            login.loginOut();
+        } else if (step.equals("17")) {
+            login.login(netType, username, password);
+            besinessLogic.costOffer(serialNo);
+            login.loginOut();
+        } else if (step.equals("18")) {
+            login.login(netType, username, password);
+            besinessLogic.costOffer(serialNo);
+            login.loginOut();
+        } else if (step.equals("19")) {
+            login.login(netType, username, password);
+            besinessLogic.costOffer(serialNo);
+            login.loginOut();
         }
 
 
-
-
     }
+
     @AfterTest
     public void close() throws InterruptedException {
         BroswerInit.closeBroswer();
