@@ -274,7 +274,7 @@ public class BesinessLogic {
 
 
     }
-
+    //装修公司成本报价
     public void costOffer(String serialNo) throws InterruptedException {
         //点击渠道申请
         ElementOperation.elementOperation("xpath", ".//*[@id='qdManage']/a", "click", null);
@@ -338,6 +338,26 @@ public class BesinessLogic {
         ElementOperation.elementOperation("xpath", "/html/body/div[40]/div[2]/div[4]/a/span/span", "click", null);
 
     }
+    //装修公司“成本报价”经办人审核
+    public void costOfferCheck(String serialNo) throws InterruptedException {
+        //点击渠道申请
+        ElementOperation.elementOperation("xpath", ".//*[@id='qdManage']/a", "click", null);
+
+        //查询待处理记录
+        SerachAndSelect.searchSelect(serialNo);
+        //点击成本报价
+        ElementOperation.elementOperation("xpath", ".//*[@id='centerBtn']/a[5]/span/span[1]", "click", null);
+        //选择下级审批人
+        ElementOperation.elementOperation("xpath", ".//*[@id='nextApproverBtn']/span/span/span", "click", null);
+        ElementOperation.elementOperation("xpath", "html/body/div[56]/div/div[3]", "click", null);
+       //点击“确定”按钮
+        ElementOperation.elementOperation("xpath", " .//*[@id='btnAgreeQuotation']/span/span[2]", "click", null);
+        //结果校验
+        ExpectManage.expectManage("inputBox","操作成功","xpath","html/body/div[39]/div[2]/div[2]");
+
+        //结果框确认
+        ElementOperation.elementOperation("xpath", "html/body/div[39]/div[2]/div[4]/a", "click", null);
 
 
+    }
 }

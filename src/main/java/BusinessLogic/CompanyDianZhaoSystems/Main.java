@@ -10,7 +10,7 @@ import java.awt.*;
  * Created by thinkpad on 2017/2/13.
  */
 public class Main {
-    String serialNo = "201702161723133";
+    String serialNo = "201702171746183";
 
     @DataProvider(name = "loginAccount")
     public Object[][] data() {
@@ -46,8 +46,8 @@ public class Main {
 //                {"4", "outNet", "cst010106", "a123456789"},    //资料回传
 //                {"5", "innerNet", "cstp06165", "cstp06165"},   //资料回传确认
 //                {"6", "innerNet", "cstp06165", "cstp06165"},   //经办人装修测量
-                {"7", "outNet", "cst030001", "cst030001"},   //装修公司成本报价
-//                {"8", "innerNet", "cstp06165", "cstp06165"},   //经办人成本审批
+//                {"7", "outNet", "cst030001", "cst030001"},   //装修公司成本报价
+                {"8", "innerNet", "cstp06165", "cstp06165"},   //经办人成本审批
 //                {"9", "innerNet", "csta931", "csta931"},       //经理审批
 //                {"10", "outNet", "cst040001", "cst040001"},   //广告公司字体报价
 //                {"11", "outNet", "cst010106", "a123456789"},    //经销商版面确认
@@ -111,7 +111,7 @@ public class Main {
             login.loginOut();
         } else if (step.equals("8")) {
             login.login(netType, username, password);
-            besinessLogic.costOffer(serialNo);
+            besinessLogic.costOfferCheck(serialNo);
             login.loginOut();
         } else if (step.equals("9")) {
             login.login(netType, username, password);
