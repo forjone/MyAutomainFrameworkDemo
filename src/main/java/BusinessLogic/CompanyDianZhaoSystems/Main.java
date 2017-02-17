@@ -10,7 +10,7 @@ import java.awt.*;
  * Created by thinkpad on 2017/2/13.
  */
 public class Main {
-    String serialNo = "201702161629309";
+    String serialNo = "201702161659074";
 
     @DataProvider(name = "loginAccount")
     public Object[][] data() {
@@ -39,11 +39,7 @@ public class Main {
                 {"innerNet","cst0001","cst0001"},       //总经理完工审核
                 {"innerNet","cstp06165","cstp06165"},   //经办人报核完成
                 */
-//                {"1", "outNet", "cst010106", "a123456789"},    //新增申请
-//                {"2", "innerNet", "cstp06165", "cstp06165"},   //同意申请并传到上级
-//                {"3", "innerNet", "csta931", "csta931"},       //经理审批
-//                {"4", "outNet", "cst010106", "a123456789"},    //资料回传
-//                {"5", "innerNet", "cstp06165", "cstp06165"},   //资料回传确认
+            //资料回传确认
                 {"6", "innerNet", "cstp06165", "cstp06165"},   //经办人装修测量
 //                {"7", "outNet", "cst030001", "cst030001"},   //装修公司成本报价
 //                {"8", "innerNet", "cstp06165", "cstp06165"},   //经办人成本审批

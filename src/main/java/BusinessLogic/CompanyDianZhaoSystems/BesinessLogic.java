@@ -4,6 +4,7 @@ import BaseFramework.BroswerInit;
 import BaseFramework.ElementFindLocation;
 import BaseFramework.ElementOperation;
 import BaseFramework.ExpectManage;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -53,13 +54,13 @@ public class BesinessLogic {
         ElementOperation.elementOperation("xpath", "html/body/div[34]/div/div[1]", "click", null);
         //选择省
         ElementOperation.elementOperation("xpath", ".//*[@id='shopInfoUl']/form[1]/li[5]/span[1]/span/span", "click", null);
-        ElementOperation.elementOperation("xpath", "html/body/div[20]/div/div[3]", "click", null);
+        ElementOperation.elementOperation("xpath", "html/body/div[20]/div/div[13]", "click", null);
         //选择市
         ElementOperation.elementOperation("xpath", ".//*[@id='shopInfoUl']/form[1]/li[5]/span[2]/span/span", "click", null);
         ElementOperation.elementOperation("xpath", "html/body/div[21]/div/div[1]", "click", null);
         //选择市
         ElementOperation.elementOperation("xpath", ".//*[@id='shopInfoUl']/form[1]/li[5]/span[3]/span/span", "click", null);
-        ElementOperation.elementOperation("xpath", "html/body/div[22]/div/div[1]", "click", null);
+        ElementOperation.elementOperation("xpath", "html/body/div[22]/div/div[2]", "click", null);
         //具体地址
         ElementOperation.elementOperation("xpath", ".//*[@id='addressDetail']", "sendKeys", "随便路");
 
@@ -237,23 +238,22 @@ public class BesinessLogic {
         ElementOperation.elementOperation("xpath", ".//*[@id='limitMoneyDecorate']", "sendKeys", "10000");
         //装修公司选择
         ElementOperation.elementOperation("xpath",".//*[@id='companyDiv']/ul[1]/form/li[1]/span/span/span","click",null);
-        Thread.sleep(2000);
-        ElementOperation.elementOperation("xpath","html/body/div[70]/div/div[2]","click",null);
+        ElementOperation.elementOperation("xpath","html/body/div[22]/div/div[2]","click",null);
         ElementOperation.elementOperation("xpath",".//*[@id='companyDiv']/ul[1]/form/li[2]/span/span/span","click",null);
-        ElementOperation.elementOperation("xpath","html/body/div[71]/div/div[1]","click",null);
+        ElementOperation.elementOperation("xpath","html/body/div[23]/div/div[1]","click",null);
+//        Thread.sleep(50000);
         //广告公司选择
         ElementOperation.elementOperation("xpath",".//*[@id='companyDiv']/ul[2]/form/li[1]/span/span/span","click",null);
-        ElementOperation.elementOperation("xpath","html/body/div[72]/div/div[1]","click",null);
-        ElementOperation.elementOperation("xpath","html/body/div[64]/div[2]/div/div/div/div[4]/div/ul[2]/form/li[2]/span/span/span","click",null);
-        ElementOperation.elementOperation("xpath","html/body/div[73]/div/div[1]","click",null);
+        ElementOperation.elementOperation("xpath","html/body/div[24]/div/div[1]","click",null);
+        ElementOperation.elementOperation("xpath",".//*[@id='companyDiv']/ul[2]/form/li[2]/span/span/span","click",null);
+        ElementOperation.elementOperation("xpath","html/body/div[25]/div/div[1]","click",null);
         //提交
         ElementOperation.elementOperation("xpath",".//*[@id='measureSubmit']/span/span[1]","click",null);
         Thread.sleep(1000);
         //结果校验
-        ExpectManage.expectManage("inputBox","操作成功","xpath","html/body/div[64]/div[2]/div[2]");
+        ExpectManage.expectManage("inputBox","操作成功","xpath","html/body/div[16]/div[2]/div[2]");
         //点击确定
-        ElementOperation.elementOperation("xpath","html/body/div[64]/div[2]/div[4]/a/span/span","click",null);
-
+        ElementOperation.elementOperation("xpath","html/body/div[16]/div[2]/div[4]/a/span/span","click",null);
 
 
     }
