@@ -10,7 +10,7 @@ import java.awt.*;
  * Created by thinkpad on 2017/2/13.
  */
 public class Main {
-    String serialNo = "201702171746183";
+    String serialNo = "201702221422274";
 
     @DataProvider(name = "loginAccount")
     public Object[][] data() {
@@ -47,21 +47,22 @@ public class Main {
 //                {"5", "innerNet", "cstp06165", "cstp06165"},   //资料回传确认
 //                {"6", "innerNet", "cstp06165", "cstp06165"},   //经办人装修测量
 //                {"7", "outNet", "cst030001", "cst030001"},   //装修公司成本报价
-                {"8", "innerNet", "cstp06165", "cstp06165"},   //经办人成本审批
+//                {"8", "innerNet", "cstp06165", "cstp06165"},   //经办人成本审批
 //                {"9", "innerNet", "csta931", "csta931"},       //经理审批
-//                {"10", "outNet", "cst040001", "cst040001"},   //广告公司字体报价
-//                {"11", "outNet", "cst010106", "a123456789"},    //经销商版面确认
-//                {"12", "innerNet", "cstp06165", "cstp06165"},   //经办人字体报价审批
-//                {"13", "innerNet", "csta931", "csta931"},       //经理审批
-//                {"14", "innerNet", "cstp06165", "cstp06165"},   //经办人呈核审批
-//                {"15", "innerNet", "cst0001", "cst0001"},       //总经理审批
-//                {"16", "innerNet", "cstp06165", "cstp06165"},   //经办人施工通知
-//                {"17", "outNet", "cst040001", "cst040001"},   //广告公司发货
-//                {"18", "outNet", "cst030001", "cst030001"},   //装修公司确认收货
-//                {"19", "outNet", "cst030001", "cst030001"},   //装修公司完工审核
-//                {"20", "innerNet", "cstp06165", "cstp06165"},   //经办人完工审核
-//                {"21", "innerNet", "cst0001", "cst0001"},       //总经理完工审核
-//                {"22", "innerNet", "cstp06165", "cstp06165"},   //经办人报核完成
+                {"10", "outNet", "cst040002", "a111111"},   //特殊广告公司字体报价
+//                {"11", "outNet", "cst040001", "cst040001"},   //广告公司字体报价
+//                {"12", "outNet", "cst010106", "a123456789"},    //经销商版面确认
+//                {"13", "innerNet", "cstp06165", "cstp06165"},   //经办人字体报价审批
+//                {"14", "innerNet", "csta931", "csta931"},       //经理审批
+//                {"15", "innerNet", "cstp06165", "cstp06165"},   //经办人呈核审批
+//                {"16", "innerNet", "cst0001", "cst0001"},       //总经理审批
+//                {"17", "innerNet", "cstp06165", "cstp06165"},   //经办人施工通知
+//                {"18", "outNet", "cst040001", "cst040001"},   //广告公司发货
+//                {"19", "outNet", "cst030001", "cst030001"},   //装修公司确认收货
+//                {"20", "outNet", "cst030001", "cst030001"},   //装修公司完工审核
+//                {"21", "innerNet", "cstp06165", "cstp06165"},   //经办人完工审核
+//                {"22", "innerNet", "cst0001", "cst0001"},       //总经理完工审核
+//                {"23", "innerNet", "cstp06165", "cstp06165"},   //经办人报核完成
 
         };
     }
@@ -115,11 +116,11 @@ public class Main {
             login.loginOut();
         } else if (step.equals("9")) {
             login.login(netType, username, password);
-            besinessLogic.costOffer(serialNo);
+            besinessLogic.costOfferManageCheck(serialNo);
             login.loginOut();
         } else if (step.equals("10")) {
             login.login(netType, username, password);
-            besinessLogic.costOffer(serialNo);
+            besinessLogic.fontCostSpecialAD(serialNo);
             login.loginOut();
         } else if (step.equals("11")) {
             login.login(netType, username, password);

@@ -35,6 +35,21 @@ public class BesinessLogic {
         return date24Hour;
     }
 
+    //上传附件
+
+    public static void uploadImage() throws InterruptedException {
+        //附件上传
+        ElementOperation.elementOperation("xpath", ".//*[@id='upLoadBtn']/span/span", "click", null);
+        Thread.sleep(1000);
+        ElementOperation.elementOperation("xpath", "//*[@id=\"SWFUpload_0\"]", "click", null);
+        Thread.sleep(5000);
+        //开始上传
+        ElementOperation.elementOperation("xpath", "//*[@id=\"upload_dialog\"]/div/div/center/ul/li[3]/a/span/span[1]", "click", null);
+        Thread.sleep(1000);
+
+
+    }
+
     //单项成本报价
     private void costCount(String clickElement, String sendKeysElement, String value) {
         //数量
@@ -104,10 +119,7 @@ public class BesinessLogic {
         //备注
         ElementOperation.elementOperation("xpath", ".//*[@id='shopRequire']", "sendKeys", "这厮是备注");
         //上传附件
-        ElementOperation.elementOperation("xpath", ".//*[@id='upLoadBtn']/span/span", "click", null);
-        Thread.sleep(1000);
-//        ElementOperation.elementOperation("xpath","//*[@id=\"SWFUpload_0\"]","sendKeys","C:\\Users\\thinkpad\\Pictures\\5.jpg");
-        ElementOperation.elementOperation("xpath", "//*[@id=\"SWFUpload_0\"]", "click", null);
+       BesinessLogic.uploadImage();
 
 
 /*
@@ -126,11 +138,10 @@ public class BesinessLogic {
 */
 
 
-        Thread.sleep(5000);
-        //开始上传
-        ElementOperation.elementOperation("xpath", "//*[@id=\"upload_dialog\"]/div/div/center/ul/li[3]/a/span/span[1]", "click", null);
-        Thread.sleep(1000);
-        //上传成功-确定按钮
+
+        //上传成功确认
+//        ExpectManage.expectManage("inputBox","上传成功!","xpath","/html/body/div[57]/div[2]/div[2]");
+
         ElementOperation.elementOperation("xpath", "/html/body/div[52]/div[2]/div[4]/a/span/span", "click", null);
 //        //保存功能
 //        ElementOperation.elementOperation("xpath", ".//*[@id='save']/span", "click", null);
@@ -198,17 +209,10 @@ public class BesinessLogic {
 
         //点击资料回传
         ElementOperation.elementOperation("xpath", ".//*[@id='centerBtn']/a[4]/span/span[1]", "click", null);
-
-        //点击上传附件按钮 .//*[@id='SWFUpload_0']
-        ElementOperation.elementOperation("xpath", ".//*[@id='upLoadBtn']/span/span", "click", null);
-        Thread.sleep(1000);
-        //选择文件
-        ElementOperation.elementOperation("xpath", "//*[@id=\"SWFUpload_0\"]", "click", null);
-        Thread.sleep(5000);
-        //开始上传
-        ElementOperation.elementOperation("xpath", "//*[@id=\"upload_dialog\"]/div/div/center/ul/li[3]/a/span/span[1]", "click", null);
-        Thread.sleep(1000);
+        //上传图片
+        BesinessLogic.uploadImage();
         //上传成功-确定按钮
+//        ExpectManage.expectManage("inputBox","上传成功!","xpath","/html/body/div[57]/div[2]/div[2]");
         ElementOperation.elementOperation("xpath", "/html/body/div[25]/div[2]/div[4]/a/span/span", "click", null);
 
         //确认回传
@@ -315,18 +319,11 @@ public class BesinessLogic {
         costCount("html/body/div[16]/div[2]/div/div/div/div[1]/div/div[3]/div[2]/div[1]/div/div/div/div[2]/div[2]/table/tbody/tr[4]/td[8]", "html/body/div[16]/div[2]/div/div/div/div[1]/div/div[3]/div[2]/div[1]/div/div/div/div[2]/div[2]/table/tbody/tr[4]/td[8]/div/table/tbody/tr/td/input[1]", "1");
         costCount("html/body/div[16]/div[2]/div/div/div/div[1]/div/div[3]/div[2]/div[1]/div/div/div/div[2]/div[2]/table/tbody/tr[5]/td[8]", "html/body/div[16]/div[2]/div/div/div/div[1]/div/div[3]/div[2]/div[1]/div/div/div/div[2]/div[2]/table/tbody/tr[5]/td[8]/div/table/tbody/tr/td/input[1]", "1");
         costCount("html/body/div[16]/div[2]/div/div/div/div[1]/div/div[3]/div[2]/div[1]/div/div/div/div[2]/div[2]/table/tbody/tr[6]/td[8]", "html/body/div[16]/div[2]/div/div/div/div[1]/div/div[3]/div[2]/div[1]/div/div/div/div[2]/div[2]/table/tbody/tr[6]/td[8]/div/table/tbody/tr/td/input[1]", "1");
-
-        //附件上传
-        ElementOperation.elementOperation("xpath", ".//*[@id='upLoadBtn']/span/span", "click", null);
-        Thread.sleep(1000);
-        ElementOperation.elementOperation("xpath", "//*[@id=\"SWFUpload_0\"]", "click", null);
-        Thread.sleep(5000);
-        //开始上传
-        ElementOperation.elementOperation("xpath", "//*[@id=\"upload_dialog\"]/div/div/center/ul/li[3]/a/span/span[1]", "click", null);
-        Thread.sleep(1000);
+        //上传附件
+        BesinessLogic.uploadImage();
+        //上传成功校验
         ExpectManage.expectManage("inputBox","上传成功!","xpath","/html/body/div[57]/div[2]/div[2]");
         ElementOperation.elementOperation("xpath", "/html/body/div[57]/div[2]/div[4]/a/span", "click", null);
-
 
         //提交
 
@@ -360,4 +357,97 @@ public class BesinessLogic {
 
 
     }
+    //装修公司“成本报价”经理审核
+    public void costOfferManageCheck(String serialNo) throws InterruptedException {
+        //点击渠道申请
+        ElementOperation.elementOperation("xpath", ".//*[@id='qdManage']/a", "click", null);
+
+        //查询待处理记录
+        SerachAndSelect.searchSelect(serialNo);
+        //点击成本报价
+        ElementOperation.elementOperation("xpath", ".//*[@id='centerBtn']/a[2]/span/span[1]", "click", null);
+
+        //点击“确定”按钮
+        ElementOperation.elementOperation("xpath", ".//*[@id='btnAgreeQuotation']/span/span[1]", "click", null);
+        //结果校验
+        ExpectManage.expectManage("inputBox","操作成功","xpath","html/body/div[39]/div[2]/div[2]");
+
+        //结果框确认
+        ElementOperation.elementOperation("xpath", "html/body/div[39]/div[2]/div[4]/a/span/span", "click", null);
+
+
+    }
+    //特殊广告公司字体报价
+    public void fontCostSpecialAD(String serialNo) throws InterruptedException {
+        //点击渠道申请
+        ElementOperation.elementOperation("xpath", ".//*[@id='qdManage']/a", "click", null);
+
+        //查询待处理记录
+        SerachAndSelect.searchSelect(serialNo);
+        //点击字体报价
+        ElementOperation.elementOperation("xpath", ".//*[@id='centerBtn']/a[1]/span/span[1]", "click", null);
+
+        //上传附件
+        BesinessLogic.uploadImage();
+
+        //上传成功校验
+        ExpectManage.expectManage("inputBox","上传成功!","xpath","/html/body/div[47]/div[2]/div[2]");
+        ElementOperation.elementOperation("xpath", "/html/body/div[47]/div[2]/div[4]/a/span/span", "click", null);
+
+
+        //点击“提交”按钮
+        ElementOperation.elementOperation("xpath", ".//*[@id='brashCompanySubmit']/span/span[1]", "click", null);
+        //结果校验
+        ExpectManage.expectManage("inputBox","操作成功","xpath","/html/body/div[40]/div[2]/div[2]");
+
+        //结果框确认
+        ElementOperation.elementOperation("xpath", "/html/body/div[40]/div[2]/div[4]/a/span/span", "click", null);
+
+
+    }
+    //广告公司字体报价
+    public void fontCostAD(String serialNo) throws InterruptedException {
+        //点击渠道申请
+        ElementOperation.elementOperation("xpath", ".//*[@id='qdManage']/a", "click", null);
+
+        //查询待处理记录
+        SerachAndSelect.searchSelect(serialNo);
+        //点击字体报价
+        ElementOperation.elementOperation("xpath", ".//*[@id='centerBtn']/a[1]/span/span[1]", "click", null);
+
+        costCount("html/body/div[16]/div[2]/div/div/div/div[1]/div/div[1]/div[2]/div[2]/div/div/div[2]/div[2]/table/tbody/tr[1]/td[8]", "html/body/div[16]/div[2]/div/div/div/div[1]/div/div[1]/div[2]/div[2]/div/div/div[2]/div[2]/table/tbody/tr[1]/td[8]/div/table/tbody/tr/td/input[1]", "1");
+        //字体制作
+        costArea("html/body/div[16]/div[2]/div/div/div/div[2]/div/div[2]/div/div/div/div[2]/div[2]/table/tbody/tr[1]/td[8]/div", "html/body/div[16]/div[2]/div/div/div/div[2]/div/div[2]/div/div/div/div[2]/div[2]/table/tbody/tr[1]/td[6]/div/table/tbody/tr/td/input[1]", "html/body/div[16]/div[2]/div/div/div/div[2]/div/div[2]/div/div/div/div[2]/div[2]/table/tbody/tr[1]/td[7]/div/table/tbody/tr/td/input[1]", "1", "1");
+        costArea("html/body/div[16]/div[2]/div/div/div/div[2]/div/div[2]/div/div/div/div[2]/div[2]/table/tbody/tr[2]/td[8]/div", "html/body/div[16]/div[2]/div/div/div/div[2]/div/div[2]/div/div/div/div[2]/div[2]/table/tbody/tr[1]/td[6]/div/table/tbody/tr/td/input[1]", "html/body/div[16]/div[2]/div/div/div/div[2]/div/div[2]/div/div/div/div[2]/div[2]/table/tbody/tr[1]/td[7]/div/table/tbody/tr/td/input[1]", "1", "1");
+        costArea("html/body/div[16]/div[2]/div/div/div/div[2]/div/div[2]/div/div/div/div[2]/div[2]/table/tbody/tr[1]/td[8]/div", "html/body/div[16]/div[2]/div/div/div/div[2]/div/div[2]/div/div/div/div[2]/div[2]/table/tbody/tr[1]/td[6]/div/table/tbody/tr/td/input[1]", "html/body/div[16]/div[2]/div/div/div/div[2]/div/div[2]/div/div/div/div[2]/div[2]/table/tbody/tr[1]/td[7]/div/table/tbody/tr/td/input[1]", "1", "1");
+        costArea("html/body/div[16]/div[2]/div/div/div/div[2]/div/div[2]/div/div/div/div[2]/div[2]/table/tbody/tr[1]/td[8]/div", "html/body/div[16]/div[2]/div/div/div/div[2]/div/div[2]/div/div/div/div[2]/div[2]/table/tbody/tr[1]/td[6]/div/table/tbody/tr/td/input[1]", "html/body/div[16]/div[2]/div/div/div/div[2]/div/div[2]/div/div/div/div[2]/div[2]/table/tbody/tr[1]/td[7]/div/table/tbody/tr/td/input[1]", "1", "1");
+        costArea("html/body/div[16]/div[2]/div/div/div/div[2]/div/div[2]/div/div/div/div[2]/div[2]/table/tbody/tr[1]/td[8]/div", "html/body/div[16]/div[2]/div/div/div/div[2]/div/div[2]/div/div/div/div[2]/div[2]/table/tbody/tr[1]/td[6]/div/table/tbody/tr/td/input[1]", "html/body/div[16]/div[2]/div/div/div/div[2]/div/div[2]/div/div/div/div[2]/div[2]/table/tbody/tr[1]/td[7]/div/table/tbody/tr/td/input[1]", "1", "1");
+
+
+
+
+
+        //点击“上传附件”按钮
+        ElementOperation.elementOperation("xpath", ".//*[@id='upLoadBtn']/span/span", "click", null);
+        //上传文件
+        BesinessLogic.uploadImage();
+
+
+        //上传成功校验
+        ExpectManage.expectManage("inputBox","上传成功!","xpath","/html/body/div[47]/div[2]/div[2]");
+        ElementOperation.elementOperation("xpath", "/html/body/div[47]/div[2]/div[4]/a/span/span", "click", null);
+
+        //点击“确定”按钮
+        ElementOperation.elementOperation("xpath", ".//*[@id='btnSubmitDrawingUpload']/span/span[1]", "click", null);
+        //结果校验
+        ExpectManage.expectManage("inputBox","操作成功","xpath","html/body/div[39]/div[2]/div[2]");
+
+        //结果框确认
+        ElementOperation.elementOperation("xpath", "html/body/div[39]/div[2]/div[4]/a/span/span", "click", null);
+
+
+    }
+
+
+
 }

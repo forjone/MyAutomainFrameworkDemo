@@ -66,6 +66,8 @@ public class ElementOperation {
                 turnOperation = false;
             }
             Assert.assertTrue("", turnOperation);
+            logger.info("对象执行“" + operation + "”操作" );
+
         } catch (AssertionError assertionError) {
 //            logger.error("未存在" + locationType + "该定位方法，无法定位元素！！！" + assertionError.getMessage());
                 logger.error("此对象不支持“" + operation + "”操作方法");

@@ -27,12 +27,15 @@ public class ExpectManage {
                 String actualTitle = driverChrome.getTitle();
                 System.out.println("实际标题为：" + actualTitle);
                 Assert.assertEquals(actualTitle, expectResult);
+                logger.info("实际校验结果为：" + actualTitle);
 
             } else if (checkElementType.equals("inputBox")) {
                 WebElement checkElement = ElementFindLocation.locationElement(locationType, locationValue);
                 String actualText = checkElement.getText();
                 System.out.println("实际校验结果为：" + actualText);
                 Assert.assertEquals(actualText, expectResult);
+                logger.info("实际校验结果为：" + actualText);
+
             } else if (checkElementType.equals("exist")) {
                 WebElement checkExist = ElementFindLocation.locationElement(locationType, locationValue);
                 boolean exist = checkExist.isDisplayed();
